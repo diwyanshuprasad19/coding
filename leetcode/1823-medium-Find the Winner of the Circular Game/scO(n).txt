@@ -1,0 +1,48 @@
+class Solution {
+public:
+    struct ListNode {
+        int val;
+        ListNode *next;
+        ListNode(int x) : val(x), next(NULL) {}
+    };
+    void solve(ListNode* temp, int &i, int k, int n)
+    {
+        // edge case
+        if(n==1)    return;
+
+        // 1 case hm solve krenge
+        int count=k-1;
+        while(count>1)
+        {
+            temp=temp->next;
+            count--;
+        }
+        ListNode* todel=temp->next;
+        temp->next=todel->next;
+        delete todel;
+        i=temp->next->val;
+
+        // baki case recursion sambhal lega
+        solve(temp->next,i,k,n-1);
+    }
+    int findTheWinner(int n, int k) {
+        if(n==1)    return 1;
+        if(k==1)    return n;
+        vector<int> v;
+        ListNode* root=new ListNode(1);
+        ListNode* temp1=root;
+        for(int i=2;i<=n;i++)
+        {
+            temp1->next=new ListNode(i);
+            temp1=temp1->next;
+        }
+        temp1->next=root;
+        int i=1;
+        ListNode* temp=root;
+        solve(temp,i,k,n);
+
+        return i;
+    }
+};
+
+https://leetcode.com/problems/find-the-winner-of-the-circular-game/solutions/5437977/linkedlist-solution-tc-o-n-sc-o-1-easy-to-understand/

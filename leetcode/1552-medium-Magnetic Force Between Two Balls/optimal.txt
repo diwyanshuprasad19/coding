@@ -1,0 +1,36 @@
+class Solution {
+public:
+    
+    bool possible(vector<int>& position, int m, int diff){
+
+            int count=1;
+            int last = position[0];
+            for(int j=0;j<position.size();j++){
+                if(position[j]-last>=diff){
+                    last=position[j];
+                    count++;
+                }
+            }
+            return count>=m;
+    }
+    int maxDistance(vector<int>& position, int m) {
+        int n= position.size();
+        if(n<m){
+            return -1;
+        }
+        sort(position.begin(),position.end());
+        int l=1, r=position[n-1]-position[0];
+        int ans=0;
+        while(l<=r){
+            int mid = l+(r-l)/2;
+            if(possible(position,m,mid)){
+                ans=mid;
+                l=mid+1;
+            }
+            else{
+                r=mid-1;
+            }
+        }
+        return ans;
+    }
+};

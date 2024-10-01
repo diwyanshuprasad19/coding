@@ -1,0 +1,21 @@
+1143. Longest Common Subsequence
+
+
+#include<bits/stdc++.h>
+int solve(int index1,int index2,string s1,string s2)
+{
+    if(index1<0 || index2<0)
+        return 0;
+    if(s1[index1]==s2[index2])
+        return 1+solve(index1-1,index2-1,s1,s2);
+    return max(solve(index1-1,index2,s1,s2),solve(index1,index2-1,s1,s2));
+}
+
+int lcs(string s, string t)
+{
+	int count=solve(s.length()-1,t.length()-1,s,t);
+    return count;
+}
+
+TC:O(2^min(n1,n2))
+SC:O(min(n1,n2)

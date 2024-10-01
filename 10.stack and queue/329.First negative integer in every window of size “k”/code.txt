@@ -1,0 +1,30 @@
+vector<long long> printFirstNegativeInteger(long long int A[],
+                                             long long int N, long long int K) {
+                                                 
+                                                 
+    vector<long long> ans;
+    queue<long long> q;
+    for(int i=0;i<K-1;i++)
+    {
+        if(A[i]<0)q.push(A[i]);
+    }
+
+    //here we start from k-1 as this will be window size limit
+    for(int i=K-1;i<N;i++)
+    {
+        if(A[i]<0)q.push(A[i]);
+        //see for pop we need to see the front element of window
+        if(q.empty()==false)
+        {
+            ans.push_back(q.front());
+            if(A[i-K+1]==q.front())
+            q.pop();
+        }
+        else
+        {
+            ans.push_back(0);
+        }
+    }
+    return ans;
+                                                 
+ }

@@ -1,0 +1,37 @@
+ public:
+    Node* reverse(Node * head)
+    {
+        Node* prev=NULL;
+        Node* curr=NULL;
+        while(head!=NULL)
+        {
+            curr=head->next;
+            head->next=prev;
+            prev=head;
+            head=curr;
+        }
+        return prev;
+    }
+    Node *compute(Node *head)
+    {
+        head=reverse(head);
+        Node* curr=head;   //last value always be in ans
+        Node* prev=head;
+        int ma=head->data;
+        while(head!=NULL)
+        {
+            if(head->data>=ma)
+            {
+                prev=head;
+                ma=head->data;
+                head=head->next;
+            }
+            else
+            {
+                prev->next=head->next;
+                head=prev->next;
+            }
+        }
+        head=reverse(curr);
+        return head;
+    }

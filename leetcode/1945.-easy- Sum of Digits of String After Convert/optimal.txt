@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int getLucky(string s, int k) {
+        // Step 1: Convert string s to a new string of numbers
+        string s1 = "";
+        for (char c : s) {
+            s1 += to_string((c - 'a') + 1);
+        }
+        
+        // Function to compute the sum of digits of a string representing a number
+        auto sumOfDigits = [](const string& str) {
+            int sum = 0;
+            for (char ch : str) {
+                sum += ch - '0';
+            }
+            return sum;
+        };
+
+        // Step 2: Perform the digit sum transformation k times
+        string current = s1;
+        for (int i = 0; i < k; ++i) {
+            int sum = sumOfDigits(current);
+            current = to_string(sum);
+        }
+        
+        return stoi(current); // Convert final result to integer
+    }
+};
+
+Time Complexity: O(n + k * n), which simplifies to O(k * n).
+Space Complexity: O(n).

@@ -1,0 +1,21 @@
+vector<int>v;
+void fxn(Node* node, int level){
+   if(node== NULL){
+       return;
+   }
+   if(v.size()== level){
+       v.push_back(node->data);
+   }
+   fxn(node->left, level+1);
+   fxn(node->right, level+1);
+}
+vector<int> leftView(Node *root)
+{
+  // left side view
+  // first node of every level 
+  // traversing left root right <--
+  v.clear();
+  fxn(root,0);
+  return v;
+  
+}

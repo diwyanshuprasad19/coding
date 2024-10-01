@@ -1,0 +1,33 @@
+    Node* lca(Node* root,int a,int b)
+    {
+        if(root==NULL || root->data==a || root->data==b)
+        {
+            return root;
+        }
+        Node* left=lca(root->left,a,b);
+         Node* right=lca(root->right,a,b);
+         if(left==NULL)
+         return right;
+         else if(right==NULL)
+         return left;
+         else
+         return root;
+    }
+    int func(Node* root,int val)
+    {
+        if(root==NULL)
+        return 0;
+        if(root->data==val)return 1;
+        int a1=func(root->left,val);
+        int b1=func(root->right,val);
+        if(a1==0 && b1==0)return 0;
+        else
+        return a1+b1+1;
+    }
+    
+    int findDist(Node* root, int a, int b) {
+        Node* parent=lca(root,a,b);
+        int a1=func(parent,a);
+        int b1=func(parent,b);
+        return a1+b1-2;
+    }

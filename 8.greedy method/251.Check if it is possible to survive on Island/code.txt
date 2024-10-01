@@ -1,0 +1,20 @@
+    int minimumDays(int S, int N, int M){
+        int s=S/7;
+        int remain=S-s;
+        int total=S*M;
+        int buy=0;
+        if(total%N!=0)
+        {
+            buy=(total/N)+1;
+        }
+        else
+        buy=total/N;
+        if(buy<=remain)
+        return buy;
+        else
+        return -1;
+        
+        
+        
+        
+    }

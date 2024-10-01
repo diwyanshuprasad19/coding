@@ -1,0 +1,12 @@
+It can, however, be explained like this:
+median (odd set of numbers) = ((n+1)/2)th term
+median (even set of numbers) = ((n/2)th term + ((n/2)+1)th term)/2
+how to find median
+
+
+m size of arr1 and n of arr2
+create another array of m+n
+sort it
+find m+n/2 based on odd and even
+time->m+n)log(m+n)
+space-m+n

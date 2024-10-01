@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
+    cout << "Original array: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    bubbleSort(arr);
+
+    cout << "Sorted array: ";
+    for (int num : arr) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
+
+Time Complexity:
+In the worst-case scenario, bubble sort has a time complexity of O(n^2), where 'n' is the number of elements in the array.
+This is because in each iteration of the outer loop, bubble sort compares and possibly swaps adjacent elements, and it requires 'n - 1' iterations to place the largest unsorted element in its correct position.
+In the best-case scenario, if the array is already sorted, bubble sort still requires one pass through the array to determine that it is sorted, resulting in a time complexity of O(n).
+However, bubble sort is not considered efficient for large datasets due to its quadratic time complexity.
+Space Complexity:
+Bubble sort has a space complexity of O(1), meaning it requires a constant amount of extra space.
+This is because bubble sort performs sorting in place, meaning it does not require additional memory proportional to the size of the input array. It only requires a few extra variables for temporary storage during swapping operations.

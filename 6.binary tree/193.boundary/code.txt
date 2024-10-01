@@ -1,0 +1,62 @@
+bool isLeaf(Node* root)
+{
+    if(root->right==NULL && root->left==NULL)
+    return true;
+    return false;
+}
+void left(Node* root,vector<int> &ans)
+{
+    Node* temp=root->left;
+    while(temp!=NULL)
+    {
+        if(!isLeaf(temp))
+        ans.push_back(temp->data);
+        if(temp->left!=NULL)
+        temp=temp->left;
+        else
+        temp=temp->right;
+    }
+}
+void leaf(Node* root,vector<int> &ans)
+{
+    if(isLeaf(root))
+    {
+        ans.push_back(root->data);
+        return;
+    }
+    if(root->left!=NULL)leaf(root->left,ans);
+    if(root->right!=NULL)leaf(root->right,ans);
+}
+void right(Node* root,vector<int> &ans)
+{
+    Node* temp=root->right;
+    vector<int>res;
+    while(temp!=NULL)
+    {
+        if(!isLeaf(temp))
+        res.push_back(temp->data);
+        if(temp->right!=NULL)
+        temp=temp->right;
+        else
+        temp=temp->left;
+    }
+    for(int i=res.size()-1;i>=0;i--)
+    {
+        ans.push_back(res[i]);
+    }
+    
+}
+    vector <int> boundary(Node *root)
+    {
+        vector<int>ans;
+        if(root==NULL)return ans;
+        if(!isLeaf(root))
+        {
+            ans.push_back(root->data);
+        }
+        left(root,ans);
+        leaf(root,ans);
+        right(root,ans);
+        return ans;
+        
+    }

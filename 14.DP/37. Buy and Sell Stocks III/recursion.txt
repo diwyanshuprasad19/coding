@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+int solve(int index,int buy,int cap,vector<int> &prices,int n)
+{
+    if(cap==0)return 0;
+    if(index==n)return 0;
+    int profit1,profit2;
+    if(buy)
+    {
+        profit1=-prices[index]+solve(index+1,0,cap,prices,n);
+        profit2=0+solve(index+1,1,cap,prices,n);
+    }
+    else
+    {
+        profit1=prices[index]+solve(index+1,1,cap-1,prices,n);
+        profit2=0+solve(index+1,0,cap,prices,n);
+
+    }
+    return max(profit1,profit2);
+}
+int maxProfit(vector<int>& prices, int n)
+{
+   int count=solve(0,1,2,prices,n);
+    return count;
+}

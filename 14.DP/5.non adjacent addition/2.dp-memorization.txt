@@ -1,0 +1,17 @@
+#include<bits/stdc++.h>
+int solve(int index,vector<int> n,vector<int> &dp)
+{
+    if(index==0)return n[index];
+    if(index<0)return 0;
+    if(dp[index]!=-1)return dp[index];
+    int pick=n[index]+solve(index-2,n,dp);
+    int notpick=0+solve(index-1,n,dp);
+    return dp[index]=max(pick,notpick);
+}
+
+int maximumNonAdjacentSum(vector<int> &nums){
+  int k=nums.size();
+    vector<int> dp(k,-1);
+    int n=solve(k-1,nums,dp);
+    return n;
+}

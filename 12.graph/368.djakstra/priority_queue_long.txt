@@ -1,0 +1,36 @@
+https://www.youtube.com/watch?v=V6H1qAeB-l4&t=1s
+https://takeuforward.org/data-structure/dijkstras-algorithm-using-priority-queue-g-32/
+code solutions
+
+class Solution
+{
+	public:
+	//Function to find the shortest distance of all the vertices
+    //from the source vertex S.
+    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    {
+        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+        vector<int> v(V,INT_MAX);
+        v[S]=0;
+        pq.push({0,S});
+        while(!pq.empty()){
+            auto val=pq.top();
+            int dist = val.first;
+            int node = val.second;
+            pq.pop();
+            for(auto x:adj[node]){
+                int dis=x[1];
+                int nod=x[0];
+                if(dis+dist<v[nod]){
+                    v[nod]=dis+dist;
+                    pq.push({dis+dist,nod});
+                }
+            }
+        }
+        return v;
+    }
+};
+
+
+TC:
+SC:

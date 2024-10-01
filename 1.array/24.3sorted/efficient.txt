@@ -1,0 +1,22 @@
+   vector<int>ans;
+          int i=0,j=0,k=0;
+          while(i<n1 && j<n2 && k<n3)
+          {
+              if(A[i]==B[j] && B[j]==C[k])
+              {
+                  ans.push_back(A[i]);
+                  i++;j++;k++;
+              }
+              else if(A[i]<B[j])
+              i++;
+              else if(B[j]<C[k])
+              j++;
+              else
+              k++;
+              int x1=A[i-1],x2=B[j-1],x3=C[k-1];
+              while(A[i]==x1)i++;
+              while(B[j]==x2)j++;
+              while(C[k]==x3)k++;
+          }
+          return ans;
+        }

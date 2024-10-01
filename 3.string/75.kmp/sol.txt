@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+vector<int> compute(string s)
+{
+    int n=s.size();
+    vector<int>res(n,0);
+    
+    for(int i=1;i<n;i++)
+    {
+        int j=res[i-1];
+        while(j>0 && s[i]!=s[j])
+        j=res[j-1];
+        if(s[i]==s[j])
+        {
+            j++;
+        }
+        res[i]=j;
+    }
+    return res;
+}
+
+
+
+int main()
+{
+string pat="onions";
+string text="onionionspl";
+vector<int> prefix;
+prefix=compute(pat);
+int i=0,j=0,pos;
+while(i<text.size())
+{
+    if(pat[j]==text[i])
+    {
+    j++;
+    i++;
+    }
+    else
+    {
+        if(j!=0)
+        j=prefix[j-1];
+        else
+        i++;
+    }
+    if(j==pat.size())
+    {
+        pos=i-pat.size();
+        break;
+    }
+}
+cout<<pos;
+return 0;
+
+
+}

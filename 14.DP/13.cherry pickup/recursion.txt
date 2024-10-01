@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+int solve(int i,int j1,int j2,int row,int col,vector<vector<int>> &grid)
+{
+    if(j1<0 || j1>=col || j2<0 || j2>=col)
+        return -1e9;
+    if(i==row-1)
+    {
+        if(j1==j2)return grid[i][j1];
+        else 
+            return grid[i][j1]+grid[i][j2];
+    }
+    int maxi=INT_MIN;
+    int ans;
+    for(int d1=-1;d1<=1;d1++)
+    {
+        for(int d2=-1;d2<=1;d2++)
+        {
+            if(j1==j2)
+                ans=grid[i][j1]+solve(i+1,j1+d1,j2+d2,row,col,grid);
+            else
+                ans=grid[i][j1]+grid[i][j2]+solve(i+1,j1+d1,j2+d2,row,col,grid);
+            maxi=max(maxi,ans);
+        }
+    }
+    return maxi;
+}
+int maximumChocolates(int r, int c, vector<vector<int>> &grid) {
+    int count=solve(0,0,c-1,r,c,grid);
+    return count;
+}

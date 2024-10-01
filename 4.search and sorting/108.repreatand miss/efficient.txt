@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+   int arr[]={2,2};
+   int n=sizeof(arr)/sizeof(arr[0]);
+   unordered_map<int,int>mp;
+   for(int i=0;i<n;i++)
+   mp[arr[i]]=0;
+   int pos,repeat;
+   for(int i=0;i<n;i++)
+   {
+       if(mp.find(i+1)==mp.end())
+       {
+           pos=i+1;
+           repeat=arr[i];
+           break;
+       }
+   }
+   cout<<pos<<" "<<repeat;
+}

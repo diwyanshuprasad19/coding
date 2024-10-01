@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+int solve(int index,int target,vector<int> &num,vector<vector<int>> &dp)
+{
+    if(target==0)return 1;
+    if(index==0)return num[index]==target;
+    if(dp[index][target]!=-1)return dp[index][target];
+    int notpick=solve(index-1,target,num,dp);
+    int pick=0;
+    if(num[index]<=target)
+        pick=solve(index-1,target-num[index],num,dp);
+    return dp[index][target]=pick+notpick;
+}
+int findWays(vector<int> &num, int tar)
+{
+    vector<vector<int>> dp(num.size(),vector<int>(tar+1,-1));
+    int count=solve(num.size()-1,tar,num,dp);
+    return count;
+}

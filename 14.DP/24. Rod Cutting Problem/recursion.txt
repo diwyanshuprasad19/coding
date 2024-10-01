@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+int solve(int index,int length,vector<int> &price)
+{
+    if(index==0)
+    {
+        return length*price[0];
+    }
+    int nottake=0+solve(index-1,length,price);
+    int take=INT_MIN;
+    int rod=index+1;
+    if(rod<=length)
+        take=price[index]+solve(index,length-rod,price);
+    return max(nottake,take);
+}
+int cutRod(vector<int> &price, int n)
+{
+	int count=solve(n-1,n,price);
+    return count;
+}

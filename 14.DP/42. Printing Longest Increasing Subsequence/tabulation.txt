@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+
+int longestIncreasingSubsequence(int arr[], int n)
+{
+    vector<vector<int>> dp(n+1,vector<int>(n+1,0));
+   //no need for base case as at size==n return 0,0 alredy stored.
+    for(int index=n-1;index>=0;index--)
+    {
+        for(int prev=index-1;prev>=-1;prev--)
+        {
+            int nottake=0+dp[index+1][prev+1];
+            int take=0;
+            if(prev==-1 || arr[index]>arr[prev])
+                take=1+dp[index+1][index+1];
+            dp[index][prev+1]=max(take,nottake);
+        }
+    }
+    return dp[0][-1+1];
+}

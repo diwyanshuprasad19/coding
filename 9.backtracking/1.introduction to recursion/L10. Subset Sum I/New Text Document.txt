@@ -1,0 +1,17 @@
+void solve(int index,int sum,vector<int> arr, int N,vector<int> & store)
+{
+    if(index==N)
+    {
+        store.push_back(sum);
+        return;
+    }
+    solve(index+1,sum+arr[index],arr,N,store);
+     solve(index+1,sum,arr,N,store);
+}
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        vector<int> store;
+        solve(0,0,arr,N,store);
+        sort(store.begin(),store.end());
+        return store;
+    }

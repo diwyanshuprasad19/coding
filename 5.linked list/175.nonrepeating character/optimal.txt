@@ -1,0 +1,35 @@
+		string FirstNonRepeating(string A){
+		   string ans="";
+		   int n=A.length();
+		   vector<int>vis(26,0);
+		   vector<char>v;
+		   int i=0;
+		   for(int i=0;i<n;i++)
+		   {
+		       if(vis[A[i]-'a']==0)
+		       {
+		           v.push_back(A[i]);
+		       }
+		       vis[A[i]-'a']++;
+		     int m=v.size();
+		     int f=0;
+		     /*
+		     here in order vector  we will check in order in vis if that vector is independent
+		     or non repeat occurs 1 times if yes just break it  and add it to ans 
+		     just dry run and will find out.
+		     
+		     */
+		     for(int j=0;j<m;j++)     
+		     {
+		         if(vis[v[j]-'a']==1)
+		         {
+		         ans=ans+v[j];
+		         f=1;
+		         break;
+		         }
+		     }
+		     if(f==0)
+		     ans=ans+"#";
+		   }
+		   return ans;
+		}

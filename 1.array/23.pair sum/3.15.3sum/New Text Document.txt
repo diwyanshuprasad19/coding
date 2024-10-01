@@ -1,0 +1,83 @@
+sol1:time limit exceeeded:
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) 
+    {
+        int len=nums.size();
+        sort(nums.begin(),nums.end());
+        int l,r;
+        string temp;
+        unordered_set<string> n1;
+        vector<vector<int>>ans;
+        for(int i=0;i<len-2;i++)
+        {
+            l=i+1;
+            r=len-1;
+            while(l<r)
+            {
+                if(nums[i]+nums[l]+nums[r]==0)
+                {
+                    vector<int>un(3);
+                    temp=to_string(nums[i])+":"+to_string(nums[l])+":"+to_string(nums[r]);
+                    if(n1.find(temp)==n1.end())
+                    {
+                        n1.insert(temp);
+                        un[0]=nums[i];
+                        un[1]=nums[l];
+                        un[2]=nums[r];
+                        ans.push_back(un);
+                    }
+                    l++;
+                    r--;
+                }
+                else if(nums[i]+nums[l]+nums[r]<0)
+                    l++;
+                else if(nums[i]+nums[l]+nums[r]>0)
+                    r--;
+            }
+        }
+        return ans;
+        
+    }
+};
+sol2:accepted
+
+    vector<vector<int>> threeSum(vector<int>& nums) 
+    {
+        sort(nums.begin(),nums.end());
+       vector<vector<int>>ans;
+        int len=nums.size();
+        int l,r;
+        for(int i=0;i<len-2;i++)
+        {
+            if(i==0||nums[i]>nums[i-1])
+            {
+                l=i+1;
+                r=len-1;
+             
+                while(l<r)
+                {
+                    if(l>i+1 && nums[l]==nums[l-1])
+                        l++;
+                    else if(r<len-1 && nums[r]==nums[r+1])
+                        r--;
+                    else if(nums[i]+nums[l]+nums[r]==0)
+                    {
+                          vector<int>un(3);
+                        un[0]=nums[i];
+                        un[1]=nums[l];
+                        un[2]=nums[r];
+                        ans.push_back(un);
+                        l++;
+                        r--;
+                    }
+                    else if(nums[i]+nums[l]+nums[r]<0)
+                        l++;
+                    else if(nums[i]+nums[l]+nums[r]>0)
+                        r--;
+                }
+            }
+        }
+        return ans;
+        
+    }

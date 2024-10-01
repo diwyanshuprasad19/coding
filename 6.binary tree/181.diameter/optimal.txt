@@ -1,0 +1,17 @@
+543. Diameter of Binary Tree explaination:
+
+    int ma;
+int func(Node* root)
+{
+    if(root==NULL)return 0;
+    int x=func(root->left);
+    int y=func(root->right);
+    ma=max(ma,x+y+1);
+    
+    return(max(x,y)+1);
+}
+int diameter(struct Node* root) {
+    ma=INT_MIN;
+    int x=func(root);
+    return ma;
+}

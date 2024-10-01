@@ -1,0 +1,10 @@
+    int countSquares(int N) {
+       int a=sqrt(N);  //Time Complexity: O(v n).
+       if(a*a==N)return a-1;
+       else return a;
+    }
+};
+
+
+or 
+just return sqrt(n-1)

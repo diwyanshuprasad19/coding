@@ -1,0 +1,42 @@
+	vector<vector<int>>nearest(vector<vector<int>>grid)
+	{
+	    int n=grid.size();
+	    int m=grid[0].size();
+	    
+	    vector<vector<int>> vis(n,vector<int>(m,0));
+	    vector<vector<int>> dis(n,vector<int>(m,0));
+	    queue<pair<pair<int,int>,int>> q;
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<m;j++)
+	        {
+	            if(grid[i][j]==1)
+	            {
+	                q.push({{i,j},0});
+	                vis[i][j]=1;
+	            }
+	        }
+	    }
+	    int arow[]={-1,0,1,0};
+	    int acol[]={0,1,0,-1};
+	    while(q.empty()==false)
+	    {
+	        int nrow=q.front().first.first;
+	        int ncol=q.front().first.second;
+	        int step=q.front().second;
+	        q.pop();
+	        dis[nrow][ncol]=step;
+	        for(int i=0;i<4;i++)
+	        {
+	            int trow=nrow+arow[i];
+	            int tcol=ncol+acol[i];
+	            if(trow>=0 && trow<n && tcol>=0 && tcol<m && vis[trow][tcol]==0)
+	            {
+	                vis[trow][tcol]=1;
+	                q.push({{trow,tcol},step+1});
+	            }
+	        }
+	    }
+	    return dis;
+	}

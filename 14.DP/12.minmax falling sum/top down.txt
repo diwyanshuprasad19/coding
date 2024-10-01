@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+int solve(int i,int j,vector<vector<int>> &matrix,int n,int m,vector<vector<int>> &dp)
+{
+     if(j<0 || j>=m)return -1e7;
+    // this should be above as first check if exceed or not.
+    if(i==0)return dp[i][j]=matrix[i][j];
+    if(dp[i][j]!=-1)return dp[i][j];
+    int down=matrix[i][j]+solve(i-1,j,matrix,n,m,dp);
+    int ld=matrix[i][j]+solve(i-1,j-1,matrix,n,m,dp);
+    int rd=matrix[i][j]+solve(i-1,j+1,matrix,n,m,dp);
+    return dp[i][j]=max(down,max(ld,rd));
+}
+int getMaxPathSum(vector<vector<int>> &matrix)
+{
+    int n=matrix.size();
+    int m=matrix[0].size();
+    int count=INT_MIN;
+          vector<vector<int>> dp(n,vector<int>(m,-1));
+    // here dp just push as nowhere  we are putting or comparing sp.hence 
+    //just put value max of down,ld,rd.
+    for(int i=0;i<m;i++)
+    {
+        count=max(solve(n-1,i,matrix,n,m,dp),count);
+    }
+    return count;
+}

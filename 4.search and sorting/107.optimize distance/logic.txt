@@ -1,0 +1,8 @@
+https://www.geeksforgeeks.org/optimum-location-point-minimize-total-distance/#:~:text=We%20need%20to%20find%20a,set%20of%20points%20is%20minimum.&text=In%20above%20figure%20optimum%20location,is%20minimum%20obtainable%20total%20distance.
+The programming shorthand "1e6" means "one with an exponent of 6," 
+or, more accurately, "one multiplied by ten raised to the 6th power."
+ double c = 1,000,000; // creates a syntax error — don't use commas.
+
+
+-> and . in struct
+https://stackoverflow.com/questions/5998599/difference-between-and-in-a-struct

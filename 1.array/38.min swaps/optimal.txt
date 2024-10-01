@@ -1,0 +1,47 @@
+ /*
+       consider 1257 already 
+       125 bad=1->hence net window 257 soarr[i]=1 and arr[j]=7 here in next window 
+       7 is new bad hence bad++ as 257 2 bad there 7 is new bad while 5 earlier counted in bad
+       same for arr[i]>k this has already been counted in earlier window hence bad--;
+       */   
+
+
+
+
+ int minSwap(int arr[], int n, int k) {
+       /*
+       consider 1257 already 
+       125 bad=1->hence net window 257 soarr[i]=1 and arr[j]=7 here in next window 
+       7 is new bad hence bad++ as 257 2 bad there 7 is new bad while 5 earlier counted in bad
+       same for arr[i]>k this has already been counted in earlier window hence bad--;
+       */
+ int count = 0;
+    for (int i = 0; i < n; ++i)
+        if (arr[i] <= k)
+            ++count;
+     
+    // Find unwanted elements in current
+    // window of size 'count'
+    int bad = 0;
+    for (int i = 0; i < count; ++i)
+        if (arr[i] > k)
+            ++bad;
+     
+    // Initialize answer with 'bad' value of
+    // current window
+    int ans = bad;
+    for (int i = 0, j = count; j < n; ++i, ++j) {
+         
+        // Decrement count of previous window
+        if (arr[i] > k)
+            --bad;
+         
+        // Increment count of current window
+        if (arr[j] > k)
+            ++bad;
+         
+        // Update ans if count of 'bad'
+        // is less in current window
+        ans = min(ans, bad);
+    }
+    return ans;

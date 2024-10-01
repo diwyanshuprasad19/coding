@@ -1,0 +1,36 @@
+    TreeNode* succ(TreeNode* root)
+    {
+        TreeNode* p=root->right;
+        while(p->left!=NULL)p=p->left;
+        return p;
+    }
+    TreeNode* deleteNode(TreeNode* root, int key) {
+        if(root==NULL)return NULL;
+        if(key<root->val)root->left=deleteNode(root->left,key);
+        else if(key>root->val)root->right=deleteNode(root->right,key);
+        else
+        {
+            if(root->right==NULL)
+            {
+                TreeNode* temp=root->left;
+                delete(root);
+                return temp;
+            }
+            else if(root->left==NULL)
+            {
+                TreeNode* temp=root->right;
+                delete(root);
+                return temp;
+            }
+            else //this consider for 5 6 5.1 5.2 and dry and see it works.
+            {
+                TreeNode* temp=succ(root);
+                swap(root->val,temp->val);
+                root->right=deleteNode(root->right,key);
+                //we go right as when we swap 5 and 5.1 5.1 is the current root
+                //its current right is 6 6 left 5.2 and left left is 5 see it 
+                //goes that way
+            }
+        }
+        return root;
+    }

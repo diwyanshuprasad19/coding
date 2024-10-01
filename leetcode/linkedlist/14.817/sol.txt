@@ -1,0 +1,23 @@
+ int numComponents(ListNode* head, vector<int>& nums) 
+    {
+      unordered_map<int,int>m;
+        for(auto i:nums)
+            m[i]++;
+        ListNode* temp=head;
+        int com=0;
+        int ctr=0;
+        while(temp)
+        {
+            if(m.count(temp->val))
+                ctr++;
+            else
+            {
+                if(ctr)
+                    com++;
+                ctr=0;
+            }
+            temp=temp->next;
+        }
+        if(ctr)com++;
+        return com;
+    }

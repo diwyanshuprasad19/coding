@@ -1,0 +1,4 @@
+store all element in m*n array
+use sorting and print it
+time complexity->n*mlog(n*m)
+space->n*m

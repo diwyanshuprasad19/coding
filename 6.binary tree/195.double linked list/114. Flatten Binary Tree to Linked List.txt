@@ -1,0 +1,49 @@
+✔️ C++ || EXPLAINED || ; ]
+https://leetcode.com/problems/flatten-binary-tree-to-linked-list/solutions/2338791/c-explained/
+
+class Solution {
+public:
+    TreeNode* rightmost(TreeNode* root){
+        if(root->right==NULL)return root;
+       return  rightmost(root->right);
+    }
+
+    void flatten(TreeNode* root) {
+        if(root==NULL)return;
+        while(root)
+        {
+            TreeNode* rm;
+            TreeNode* r;
+            if(root->left){
+                rm = rightmost(root->left);
+                r = root->right;
+                root->right = root->left;
+                root->left = NULL;
+                rm->right=r;
+            }
+            root = root->right;
+        }
+    }
+};
+
+time complexity:
+Let's analyze the time complexity of the flatten function in the provided C++ code:
+
+Finding the rightmost node in the left subtree:
+
+The rightmost function recursively finds the rightmost node in the left subtree of a given node.
+This operation takes O(h) time, where h is the height of the left subtree.
+In the worst case, when the tree is unbalanced, h can be equal to the number of nodes in the tree, making this step O(n).
+Flattening the tree:
+
+The main part of the flatten function involves traversing each node of the tree once and performing constant-time operations.
+Inside the loop, each node is processed once, and the operations involve swapping pointers, setting pointers to NULL, and linking nodes.
+Since each node is visited once, and the operations inside the loop are constant time, the time complexity of this part is O(n), where n is the number of nodes in the tree.
+Therefore, the overall time complexity of the flatten function is O(n), where n is the number of nodes in the binary tree. This is because the O(n) complexity of the flattening operation dominates the O(h) complexity of finding the rightmost node in the left subtree, considering worst-case scenarios.
+
+
+
+
+
+
+space:O(1)

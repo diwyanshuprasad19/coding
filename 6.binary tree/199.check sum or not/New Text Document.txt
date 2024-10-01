@@ -1,0 +1,17 @@
+ int f=1;
+    int isSum(Node* root)
+    {
+       if(root==NULL)return 0;
+       if(root->left==NULL && root->right==NULL)return root->data;
+       if(f==0)return 0;
+       int a=isSum(root->left);
+       int b=isSum(root->right);
+       if(a+b!=root->data)f=0;
+       return a+b+root->data;
+    }
+    bool isSumTree(Node* root)
+    {
+        f=1;
+        int a=isSum(root);
+        return f;
+    }

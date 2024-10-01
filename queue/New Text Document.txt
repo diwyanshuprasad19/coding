@@ -1,0 +1,4 @@
+priority queue by default follows max heap
+if we want kth smalles just in push do -of element and in print top do - 
+we get smallest eleement.
+

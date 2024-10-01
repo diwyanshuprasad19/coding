@@ -1,0 +1,41 @@
+    string rearrangeString(string str)
+    {          
+        unordered_map<char,int> m;
+        for(int i=0;i<str.size();i++)
+        {
+            m[str[i]]++;
+        }
+        priority_queue<pair<int,char>> p;
+        for(auto i:m)
+        {
+            p.push({i.second,i.first});
+        }
+   string ans="";
+   while(p.size()>=2)
+   {
+       auto fir=p.top();
+       p.pop();
+       auto sec=p.top();
+       p.pop();
+       ans+=fir.second;
+       ans+=sec.second;
+       if(fir.first-1>0)
+       {
+           p.push({fir.first-1,fir.second});
+           
+       }
+        if(sec.first-1>0)
+       {
+           p.push({sec.first-1,sec.second});
+       }
+       
+   }
+   while(p.empty()==false)
+   {
+       auto i=p.top();
+       p.pop();
+       ans+=i.second;
+   }
+    
+return ans;
+    }

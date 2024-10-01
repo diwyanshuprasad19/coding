@@ -1,0 +1,24 @@
+             bool isGood(int n, int mid){
+           int numberOfZeros=0;
+           while(mid){
+               numberOfZeros+=mid/5;
+               mid/=5;
+           }
+           return numberOfZeros>=n;
+       }
+
+       int findNum(int n)
+       {
+       //complete the function here
+           int s=0,e=1e9,mid;
+           while(e-s>1){
+               mid=s+(e-s)/2;
+               if(isGood(n,mid)){
+                   e=mid;
+               }
+               else{
+                   s=mid;
+               }
+           }
+           return e;
+       }

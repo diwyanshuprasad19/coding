@@ -1,0 +1,27 @@
+    int height(struct Node* node){
+            if(!node)
+    return -1;
+    
+    queue<Node *> q;
+    q.push(node);
+    q.push(NULL);
+    int level=0;
+    while(!q.empty())
+    {
+        Node* nn=q.front();
+        q.pop();
+        if(nn!=NULL)
+        {
+            if(nn->left)
+            q.push(nn->left);
+            if(nn->right)
+            q.push(nn->right);
+        }
+        else if(!q.empty())
+        {
+            q.push(NULL);
+            level++;
+        }
+    }
+    return level+1;
+    }

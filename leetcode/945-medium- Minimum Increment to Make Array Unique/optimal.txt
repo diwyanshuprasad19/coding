@@ -1,0 +1,22 @@
+https://leetcode.com/problems/minimum-increment-to-make-array-unique/solutions/5310195/easy-to-understand-sorting-solution-beats-90/
+
+solutions:
+class Solution {
+public:
+    int minIncrementForUnique(vector<int>& nums) {
+       sort(nums.begin(),nums.end());
+       int lar=nums[0];
+       int count=0;
+       for(int i=1;i<nums.size();i++){
+        if(nums[i]>lar){
+            lar=nums[i];
+            continue;
+        }
+        count+=lar-nums[i]+1;
+        lar=lar+1;
+
+        
+       }
+       return count;
+    }
+};

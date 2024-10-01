@@ -1,0 +1,40 @@
+    string reorganizeString(string s) {
+        map<char,int> m;
+        for(int i=0;i<s.size();i++)
+        {
+            m[s[i]]++;
+        }
+        priority_queue<pair<int,char>> p;
+        for(auto i:m)
+        {
+            p.push({i.second,i.first});
+        }
+        pair<int,char> g={-1,'$'};
+        string ans="";
+        while(p.empty()==false)
+        {
+            auto temp=p.top();
+            p.pop();
+            ans+=temp.second;
+            temp.first--;
+            /*
+        see here 2 variable first and second.here second already value is -1 and $
+        .now in while take first value and add in the ans variable.then second =first and
+         first =p.top().
+            */
+            if(g.first>0)
+            {
+                p.push(g);
+            }
+            g=temp;
+        }
+        if(ans.size()==s.size())
+        {
+            return ans;
+        }
+        else
+        {
+            return "";
+        }
+        
+    }

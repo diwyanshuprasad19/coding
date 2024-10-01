@@ -1,0 +1,64 @@
+    bool isSafe(int row,int col,vector<string> &fill,int n)
+    {
+        //can only check left ,upward and downward left diagnol
+        int duprow=row;
+        int dupcol=col;
+        //upward diagnol
+        while(row>=0 && col>=0)
+        {
+            if(fill[row][col]=='Q')return false;
+            row--;
+            col--;
+        }
+        //left check
+        row=duprow;
+        col=dupcol;
+        while(col>=0 && row>=0)
+        {
+            if(fill[row][col]=='Q')return false;
+            col--;
+        }
+        //downward check
+         row=duprow;
+        col=dupcol;
+        while(col>=0 && row>=0 && row<n)
+        {
+            if(fill[row][col]=='Q')return false;
+            col--;
+            row++;
+        }
+        return true;
+    }
+    
+    
+    void solve(int col,vector<vector<string>> &ans,vector<string> &fill,int n)
+    {
+        if(col ==n)
+        {
+            ans.push_back(fill);
+            return;
+        }
+        for(int row=0;row<n;row++)
+        {
+            if(isSafe(row,col,fill,n))
+            {
+                  fill[row][col]='Q';
+                solve(col+1,ans,fill,n);
+                fill[row][col]='.';
+            }
+           
+            
+        }
+    }
+    
+    vector<vector<string>> solveNQueens(int n) {
+        vector<vector<string>> ans;
+        vector<string> fill;
+        string s(n,'.');
+        for(int i=0;i<n;i++)
+        {
+            fill.push_back(s);
+        }
+        solve(0,ans,fill,n);
+        return ans;
+    }

@@ -1,0 +1,39 @@
+node* getTail(node* head)
+{
+    node* temp=head;
+    while(temp!=NULL && temp->next!=NULL)
+    temp=temp->next;
+    return temp;
+}
+node* partition(node* head,node* tail)
+{
+    node* pivot=head;
+    node* curr=head->next;
+    node* prev=head;
+    while(curr!=tail->next)
+    {
+        if(curr->data<pivot->data)
+        {
+            swap(prev->next->data,curr->data);
+            prev=prev->next;
+        }
+        curr=curr->next;
+    }
+    swap(prev->data,pivot->data);
+    return prev;
+}
+void quicksort(node* head,node* tail)
+{
+    if(head==NULL || tail==NULL || head==tail)    //null in both or single element assume 
+    return;                                       //already sorted
+    node* pivot=partition(head,tail);
+    quicksort(head,pivot);
+    quicksort(pivot->next,tail);
+}
+void quickSort(struct node **headRef) {
+    node* head=*headRef;
+    if(head==NULL || head->next==NULL)
+    return;
+    node* tail=getTail(head);
+    quicksort(head,tail);
+}

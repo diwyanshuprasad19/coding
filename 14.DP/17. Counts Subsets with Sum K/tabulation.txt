@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+int findWays(vector<int> &num, int tar)
+{
+    vector<vector<int>> dp(num.size(),vector<int>(tar+1,0));
+    for(int i=0;i<num.size();i++) dp[i][0]=1;
+    if(num[0]<=tar)
+    dp[0][num[0]]=1;
+    for(int i=1;i<num.size();i++)
+    {
+        for(int j=0;j<=tar;j++)
+        {
+            int notpick=dp[i-1][j];
+            int pick=0;
+            if(num[i]<=j)
+                pick=dp[i-1][j-num[i]];
+            dp[i][j]=pick+notpick;
+        }
+    }
+    return dp[num.size()-1][tar];
+    
+}

@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+bool solve(int index,int target,vector<int> &arr)
+{
+    if(target==0) return true;
+    if(index==0)return(arr[index]==target);
+    bool nottake=solve(index-1,target,arr);
+    bool take=false;
+    if(target>=arr[index])
+        take=solve(index-1,target-arr[index],arr);
+    return nottake || take;
+}
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    bool ans=solve(n-1,k,arr);
+    return ans;
+}

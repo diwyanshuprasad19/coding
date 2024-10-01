@@ -1,0 +1,74 @@
+class Solution {
+public:
+    bool increasingTriplet(std::vector<int>& nums) {
+        if (nums.size() < 3) {
+            return false;
+        }
+        int a = INT_MAX;
+        int b = INT_MAX;
+
+        for (int num : nums) {
+            if (num <= a) {
+                a = num;
+            } else if (num <= b) {
+                b = num;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+};
+
+TC:O(n)
+SC:O(1)
+
+for k times:
+#include <iostream>
+#include <vector>
+#include <climits>
+
+using namespace std;
+
+bool increasingKSubsequence(const vector<int>& nums, int k) {
+    // Initialize an array to store the smallest elements of subsequences of increasing length
+    vector<int> min_elements(k - 1, INT_MAX);
+    
+    // Traverse the input array
+    for (int num : nums) {
+        for (int i = 0; i < k - 1; ++i) {
+            // Try to update the increasing subsequence array
+            if (num <= min_elements[i]) {
+                min_elements[i] = num;
+                break;
+            }
+            // If we reach the last element of min_elements and current number is larger, return true
+            if (i == k - 2 && num > min_elements[i]) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+int main() {
+    // Test cases
+    vector<int> nums1 = {1, 2, 3, 4, 5};
+    vector<int> nums2 = {5, 4, 3, 2, 1};
+    vector<int> nums3 = {2, 1, 5, 0, 4, 6};
+    
+    int k = 3; // Subsequence length
+    
+    cout << boolalpha;  // To print boolean values as true/false
+    cout << increasingKSubsequence(nums1, k) << endl;  // Output: true
+    cout << increasingKSubsequence(nums2, k) << endl;  // Output: false
+    cout << increasingKSubsequence(nums3, k) << endl;  // Output: true
+    
+    return 0;
+}
+
+Summary:
+Time Complexity: O(n*k)
+Space Complexity: O(k) (which can be considered O(1) if k is a small constant like 3).

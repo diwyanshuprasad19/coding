@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+int solve(int i,int j,vector<vector<int>> &matrix,int n,int m)
+{
+    if(i==0)return matrix[i][j];
+    if(j<0 || j>=m)return -1e9;
+    int down=matrix[i][j]+solve(i-1,j,matrix,n,m);
+    int ld=matrix[i][j]+solve(i-1,j-1,matrix,n,m);
+    int rd=matrix[i][j]+solve(i-1,j+1,matrix,n,m);
+    return max(down,max(ld,rd));
+}
+int getMaxPathSum(vector<vector<int>> &matrix)
+{
+    int n=matrix.size();
+    int m=matrix[0].size();
+    int count=INT_MIN;
+    for(int i=0;i<m;i++)
+    {
+        count=max(solve(n-1,i,matrix,n,m),count);
+    }
+    return count;
+}

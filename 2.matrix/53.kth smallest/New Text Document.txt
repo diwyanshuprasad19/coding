@@ -1,0 +1,31 @@
+int kthSmallest(int mat[MAX][MAX], int n, int k)
+{
+  int startval=mat[0][0];
+  int endval=mat[n-1][n-1];
+  int mid;
+  
+  while(startval<=endval) //this is number not index
+  {
+      mid=(startval+endval)/2;
+      int ans=0;
+      for(int i=0;i<n;i++)   //n here is for row check each row.
+      {
+          int low=0,high=n-1,m;//high is col-1
+          while(low<=high)
+          {
+            m=low+(high-low)/2;
+              if(mat[i][m]<=mid)low=m+1;
+              else
+              high=m-1;
+          }
+          ans+=low;
+      }
+      if(ans<k)startval=mid+1;
+      else 
+      endval=mid-1;
+  }
+  return startval;
+}
+
+tc:O(nlogn)
+sc:O(1)

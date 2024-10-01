@@ -1,0 +1,33 @@
+        if(n==1) return a[0];
+        int zero=0;
+        int neg=0;
+        long long int  prod=1;
+        int negmin=INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            if(a[i]==0)
+            {
+                zero++;
+                continue;
+            }
+            if(a[i]<0)
+            {
+                neg++;
+                negmin=max(a[i],negmin);
+            }
+            prod=prod*a[i];
+        }
+        if(zero==n)
+        {
+            return 0;
+        }
+        if(neg==1 && neg+zero==n)
+        {
+            return 0;
+        }
+        if(neg%2!=0)
+        {
+            prod=prod/negmin;
+        }
+        return prod;
+    }

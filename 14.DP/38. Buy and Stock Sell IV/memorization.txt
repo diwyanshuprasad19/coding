@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+int solve(int index,int buy,int cap,int size,vector<int> &prices,vector<vector<vector<int>>> &dp)
+{
+    if(cap==0 || index==size)return 0;
+    if(dp[index][buy][cap]!=-1)return dp[index][buy][cap];
+    if(buy)
+    {
+        return dp[index][buy][cap]=max(-prices[index]+solve(index+1,0,cap,size,prices,dp),0+solve(index+1,1,cap,size,prices,dp));
+    }
+    else
+    {
+       return dp[index][buy][cap]=max(prices[index]+solve(index+1,1,cap-1,size,prices,dp),0+solve(index+1,0,cap,size,prices,dp)); 
+    }
+}
+int maximumProfit(vector<int> &prices, int n, int k)
+{
+    vector<vector<vector<int>>> dp(n,vector<vector<int>>(2,vector<int>(k+1,-1)));
+    int count= solve(0,1,k,n,prices,dp);
+    return count;
+}

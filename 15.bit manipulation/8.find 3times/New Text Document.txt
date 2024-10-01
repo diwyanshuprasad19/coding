@@ -1,0 +1,4 @@
+brute force:sorting:nlogn
+map:n for both time and space
+best:xor
+https://www.geeksforgeeks.org/find-the-element-that-appears-once/

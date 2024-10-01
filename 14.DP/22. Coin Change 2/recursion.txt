@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+int solve(int index,int target,int *deno)
+{
+    if(index==0)
+    {
+        if(target%deno[0]==0)
+            return 1;
+        else 
+            return 0;
+    }
+    int nottake=solve(index-1,target,deno);
+    int take=0;
+    if(deno[index]<=target)
+        take=solve(index,target-deno[index],deno);
+    return nottake+take;
+}
+long countWaysToMakeChange(int *denominations, int n, int value)
+{
+   int count =solve(n-1,value,denominations);
+    return count;
+}

@@ -1,0 +1,52 @@
+int smallerorequal(vector<int> &arr,int r,int c,int num)
+{
+    int low=0,high=c-1;
+    while(low<=high)
+    {
+        int mid=(low+high)/2;
+        if(arr[mid]<=num)
+        low=mid+1;
+        else
+        high=mid-1;
+    }
+    return low;
+}
+/*
+logic for above code is consider 123456789
+we need to find smaller than 6 which should be 5
+here low=0,high=8, mid=4
+at arr[4] is 5 which yes is lower than 6 hence low=5
+now mid=5+8/2=6 at arr[6]=7 less than hence high=5
+now both same see at arr[5] less than 6 hce mid+1=6 6<=5 no
+hence 6 number equal to or less than 6 return 6.
+it only works if array is sorted.
+
+*/
+    int median(vector<vector<int>> &matrix, int r, int c){
+        int min1=INT_MAX,max1=INT_MIN;
+        
+
+       for(int i=0;i<r;i++)  //logic to find min is that all rowwise sorted so 1st element min and last element max
+       {
+           if(matrix[i][0]<min1)
+           min1=matrix[i][0];
+           if(matrix[i][c-1]>max1)
+           max1=matrix[i][c-1];
+           
+       }
+       int count=((r*c)+1)/2;//r and c always odd here
+       while(min1<max1)
+       {
+           int mid=min1+(min1+max1)/2;
+           int placed=0;
+           for(int i=0;i<r;i++)
+           {
+               placed+=smallerorequal(matrix[i],r,c,mid);
+           }
+           if(placed<=count)
+           min1=mid+1;
+           else
+           max1=mid-1;
+       }
+       return min1;
+    }

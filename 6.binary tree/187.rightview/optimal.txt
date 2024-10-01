@@ -1,0 +1,18 @@
+    vector<int>v;
+void fxn(Node* node, int level){
+   if(node== NULL){
+       return;
+   }
+   if(v.size()== level){
+       v.push_back(node->data);
+   }
+      fxn(node->right, level+1);
+   fxn(node->left, level+1);
+}
+
+    vector<int> rightView(Node *root)
+    {
+         v.clear();
+  fxn(root,0);
+  return v;
+    }

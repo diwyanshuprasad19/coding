@@ -1,0 +1,36 @@
+Node* p(Node* root)
+{
+    Node* temp=root->left;
+    while(temp->right)temp=temp->right;
+    return temp;
+}
+Node* s(Node* root)
+{
+    Node* temp=root->right;
+    while(temp->left)temp=temp->left;
+    return temp;
+}
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+
+if(root==NULL)return;
+if(key==root->key)
+{
+    if(root->left!=NULL)pre=p(root);
+    if(root->right!=NULL)suc=s(root);
+    return;
+}
+else if(key<root->key)
+{
+    suc=root;
+    findPreSuc(root->left,pre,suc,key);
+}
+else
+{
+    pre=root;
+    findPreSuc(root->right,pre,suc,key);
+}
+
+
+
+}

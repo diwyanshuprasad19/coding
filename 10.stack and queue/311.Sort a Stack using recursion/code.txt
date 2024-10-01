@@ -1,0 +1,30 @@
+{
+    if(s.size()==0 || s.top()<x)
+    {
+        s.push(x);
+    }
+    else
+    {
+        int a=s.top();
+        s.pop();
+        correct(s,x);
+        s.push(a);
+    }
+}
+
+
+void reverse(stack<int> &s)
+{
+    if(s.size()>0)
+    {
+        int x=s.top();
+        s.pop();
+        reverse(s);
+        correct(s,x);
+    }
+}
+
+void SortedStack :: sort()
+{
+  reverse(s);
+}

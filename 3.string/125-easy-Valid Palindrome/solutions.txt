@@ -1,0 +1,25 @@
+https://leetcode.com/problems/valid-palindrome/description/
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+       int start=0;
+       int end=s.size()-1;
+       while(start<=end){
+           if(!isalnum(s[start])){start++; continue;}
+           if(!isalnum(s[end])){end--;continue;}
+           if(tolower(s[start])!=tolower(s[end]))return false;
+           else{
+               start++;
+               end--;
+           }
+       }
+       return true;
+}
+};
+
+In C++, the isalnum function is used to check if a given character is an alphanumeric character, meaning it can be either a letter (a-z, A-Z) or a digit (0-9). This function is defined in the <cctype> header.
+
+
+TC:O(n)
+Sc:O(n)

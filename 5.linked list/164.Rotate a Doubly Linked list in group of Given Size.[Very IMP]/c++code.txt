@@ -1,0 +1,40 @@
+	static Node revListInGroupOfGivenSize(Node head, int k)
+	{
+		if(head==NULL)return NULL;
+        Node* ans=NULL;
+        Node* globalprev=NULL;
+        Node* start=head;
+        while(start!=NULL)
+        {
+        	Node* curr=start;
+        	int count=1;
+        	Node* prev=NULL;
+        	Node* next=NULL;
+        	
+        	while(count<=k && curr!=NULL)
+        	{
+        		next=curr->next;
+        		curr->prev=next;
+        		curr->next=prev;
+        		prev=curr;
+        		curr=next;
+        		count++;
+			}
+			if(ans==NULL)
+			{
+			ans=prev;
+			ans->prev=NULL;
+	     	}
+			if(globalprev==NULL)
+			globalprev=start;
+			else
+			{
+				globalprev->next=prev;
+				prev->prev=globlprev;
+				globalprev=st;
+			}
+			start=curr;
+		}
+		return ans;
+        
+	}

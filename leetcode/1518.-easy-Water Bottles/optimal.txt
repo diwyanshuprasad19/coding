@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int numWaterBottles(int numBottles, int numExchange) {
+        int div=numBottles,rem=0;
+        int ans=numBottles;
+        int d=0;
+        while(div>0){
+            d=(div/numExchange);
+            ans+=d;
+            rem=div%numExchange;
+            if(d==0)break;
+            div= d+rem;
+        }
+        return ans;
+    }
+};

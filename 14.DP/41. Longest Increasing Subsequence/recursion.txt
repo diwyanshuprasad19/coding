@@ -1,0 +1,15 @@
+#include<bits/stdc++.h>
+int solve(int index,int previndex,int arr[],int n)
+{
+    if(index==n)return 0;
+    int nottake=0+solve(index+1,previndex,arr,n);
+    int take=0;
+    if(previndex==-1 || arr[index]>arr[previndex])
+        take=1+solve(index+1,index,arr,n);
+    return max(take,nottake);
+}
+int longestIncreasingSubsequence(int arr[], int n)
+{
+   int count=solve(0,-1,arr,n);
+    return count;
+}

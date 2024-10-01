@@ -1,0 +1,43 @@
+    int minimumCostOfBreaking(vector<int> X, vector<int> Y, int M, int N){
+        //descending order
+        sort(X.begin(),X.end());
+        sort(Y.begin(),Y.end());
+        reverse(X.begin(),X.end());
+        reverse(Y.begin(),Y.end());
+        int hor=1,ver=1;
+        int i=0,j=0;
+        int n=X.size();
+        int m=Y.size();
+        int ans=0;
+        //see hor is horizontal how many pieces there and ver same.
+        while(i<n && j<m)
+        {
+            //taking maximum
+            if(X[i]>=Y[j])
+            {
+               
+                ans+=(X[i]*hor);
+                 i++;
+                ver++;
+            }
+            else
+            {
+                
+                ans+=(Y[j]*ver);
+                j++;
+                hor++;
+            }
+        }
+        while(i<n)
+        {
+            ans+=(X[i]*hor);
+            i++;
+            
+        }
+        while(j<m)
+        {
+            ans+=(Y[j]*ver);
+            j++;
+        }
+        return ans;
+    }

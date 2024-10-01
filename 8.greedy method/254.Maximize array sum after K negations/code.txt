@@ -1,0 +1,26 @@
+    long long int maximizeSum(long long int a[], int n, int k)
+    {
+      sort(a,a+n);
+      for(int i=0;i<n;i++)
+      {
+          if(a[i]<0 && k>0)
+          {
+              a[i]=-a[i];
+              k--;
+          }
+      }
+      long long int sum=0,mi=10000000;
+      for(int i=0;i<n;i++)
+      {
+         sum+=a[i];
+         mi=min(a[i],mi);
+      }
+      if(k>0)
+      {
+          if(k%2!=0)
+          {
+              sum=sum-(2*mi);
+          }
+      }
+      return sum;
+    }

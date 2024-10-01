@@ -1,0 +1,37 @@
+string longestPalin (string S) {
+        
+        int high,low,index=0,count=1;
+        for(int i=0;i<S.length();i++)
+        {
+            low=i;
+            high=i+1;
+            while(low>=0 && high<S.length() && S[low]==S[high])
+            {
+                if(high-low+1>count)
+                {
+                    index=low;
+                    count=high-low+1;
+                }
+                low--;
+                high++;
+            }
+            low=i;
+            high=i+2;
+            while(low>=0&& high<S.length()&& S[low]==S[high])
+            {
+                if(high-low+1>count)
+                {
+                    index=low;
+                    count=high-low+1;
+                }
+                low--;
+                high++;
+            }
+            
+            
+        }
+        string s="";
+        for(int i=index;i<=index+count-1;i++)
+        s=s+S[i];
+        return s;
+    }

@@ -1,0 +1,25 @@
+  int sheap(struct Node* tree)
+  {
+      if(tree==NULL)
+      return 0;
+      return 1+sheap(tree->left)+sheap(tree->right);
+  }
+  int solve(struct Node* tree,int n,int index)
+  {
+      if(tree==NULL)
+      return 1;
+      if(index>=n)
+      return 0;
+      if((tree->left  && tree->data<=tree->left->data)  || (tree->right  && tree->data<=tree->right->data))
+      return 0;
+      return solve(tree->left,n,2*index+1) && solve(tree->right,n,2*index+2);
+  }
+    bool isHeap(struct Node* tree) {
+        int index=0;
+        if(tree==NULL)
+        return 1;
+        int n=sheap(tree);
+        if(solve(tree,n,index))
+        return 1;
+        return 0;
+    }

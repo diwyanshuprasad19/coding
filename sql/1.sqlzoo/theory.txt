@@ -1,0 +1,7 @@
+https://docs.google.com/document/d/1_KhgVUiDjH02GYTR3QJRSr6-wDbo4VJUrMaS98nbSvE/edit
+
+joins:
+https://medium.com/analytics-vidhya/all-about-sql-joins-492dfa7f8a5e
+https://medium.com/@sqlfundamentals/understanding-sql-joins-inner-outer-left-and-right-joins-84470ad12c6d
+https://medium.com/@vidyasagar994356/detailed-guide-to-sql-joins-inner-left-right-full-and-self-joins-e7d0189abb11
+

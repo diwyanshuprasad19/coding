@@ -1,0 +1,31 @@
+https://medium.com/@kavyanilipalli/construct-binary-tree-from-preorder-and-postorder-traversal-leetcode-889-e0509e9279ff
+
+
+class Solution {
+public:
+    int preIndex=0,posIndex=0;
+    TreeNode* constructFromPrePost(vector<int>& preorder, vector<int>& postorder) {
+        TreeNode* root=new TreeNode(preorder[preIndex++]);
+        if(root->val!=postorder[posIndex]){
+            root->left=constructFromPrePost(preorder,postorder);
+        }
+        if(root->val!=postorder[posIndex]){
+            root->right=constructFromPrePost(preorder,postorder);
+        }
+        posIndex++;
+        return root;
+    }
+};
+
+Time Complexity:
+
+The algorithm traverses each node in both the preorder and postorder arrays exactly once.
+For each node, the algorithm performs constant-time operations.
+Therefore, the time complexity is O(N), where N is the number of nodes in the tree.
+Space Complexity:
+
+The space complexity is determined by the recursive call stack.
+In the worst case, the height of the call stack corresponds to the height of the tree.
+Therefore, the space complexity is O(H), where H is the height of the tree.
+In a balanced binary tree, the height H is approximately log(N), where N is the number of nodes.
+In the worst case (skewed tree), the height H can be O(N), resulting in O(N) space complexity.

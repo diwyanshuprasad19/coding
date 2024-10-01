@@ -1,0 +1,21 @@
+https://leetcode.com/problems/invert-binary-tree/
+
+class Solution {
+public:
+void mirror(TreeNode* node) {
+    
+   if(node==NULL) return;
+   mirror(node->left);
+   mirror(node->right);
+   TreeNode* nn=node->right;
+   node->right=node->left;
+   node->left=nn;
+}
+    TreeNode* invertTree(TreeNode* root) {
+        mirror(root);
+        return root;
+    }
+};
+
+Time complexity: O(N)
+Space complexity: O(N) Recursive stack space

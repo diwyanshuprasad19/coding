@@ -1,0 +1,30 @@
+class Solution {
+public:
+    long long maximumImportance(int n, vector<vector<int>>& roads) {
+        vector<int> v(n,0);
+        for(int i=0;i<roads.size();i++){
+            v[roads[i][0]]++;
+            v[roads[i][1]]++;
+        }
+        vector<pair<int,int>> in;
+        for(int i=0;i<n;i++){
+            in.push_back({v[i],i});
+        }
+        sort(in.begin(), in.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
+        return a.first > b.first;
+    });
+    int temp=n;
+    for(int i=0;i<n;i++){
+        v[in[i].second]=temp--;
+    }
+    int ans=0;
+    for(int i=0;i<roads.size();i++){
+        ans+=(v[roads[i][0]]+v[roads[i][1]]);
+    }
+    return ans;
+
+    }
+};
+
+TC:O(v+e)
+SC:O(n)

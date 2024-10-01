@@ -1,0 +1,4 @@
+transverse whole array and find max 1
+time->O(n*m)
+
+//also each row is sorted

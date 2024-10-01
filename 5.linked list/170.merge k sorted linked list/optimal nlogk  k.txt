@@ -1,0 +1,51 @@
+    Node* merge(Node* a,Node* b)  //merge function of merge sort
+    {
+        Node* result=NULL;
+        if(a==NULL)return b;
+        else if(b==NULL)return a;
+        if(a->data<=b->data)
+        {
+            result=a;
+            result->next=merge(a->next,b);
+        }
+        else
+        {
+            result=b;
+            result->next=merge(a,b->next);
+        }
+        return result;
+    }
+    Node * mergeKLists(Node *arr[], int K)  //time complexity-nlogk
+    {
+           int i=0;
+           int last=K-1;
+           int j;
+           while(last!=0)
+           {
+               i=0;
+               j=last;
+               while(i<j)
+               {
+                   arr[i]=merge(arr[i],arr[j]);
+                   i++;
+                   j--;
+                   if(i>=j)
+                   last=j;
+               }
+           }
+           return arr[0];
+    }
+
+//here time log k for mergelist function
+as consider 10 linkes list in array 
+secong loop 5 
+third loop 3
+fourth loop 2
+fifth 1
+here evry time divided by 2 
+hence log k
+merge funtion at max takes n time complexity 
+hence nlog k is time complexity.
+// if we do arr[0] with arr[1],2,3,4, and store again and again inarr[0]
+time complexity will be n*k.
+we optimise this to get above sol.

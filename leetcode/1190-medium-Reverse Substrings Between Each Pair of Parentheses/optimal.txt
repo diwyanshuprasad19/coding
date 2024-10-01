@@ -1,0 +1,30 @@
+https://www.youtube.com/watch?v=N5hBo4dgg8g
+
+solution
+class Solution {
+public:
+    string reverseParentheses(string s) {
+     stack <int> v;
+     int start,end;
+     int n=s.size();
+     for(int i=0;i<n;i++){
+        if(s[i]=='(')
+        v.push(i);
+        else if(s[i]==')'){
+            start=v.top()+1;
+            end=i;
+            reverse(s.begin()+start,s.begin()+end);
+            v.pop();
+        }
+     }  
+     string ans=""; 
+     for(int i=0;i<n;i++){
+        if(s[i]=='(' || s[i]==')')continue;
+        ans+=s[i];
+     }
+     return ans;
+    }
+};
+
+TC:O(n)
+SC:O(n)

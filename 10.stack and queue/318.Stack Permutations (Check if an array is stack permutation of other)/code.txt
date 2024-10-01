@@ -1,0 +1,19 @@
+    int isStackPermutation(int N,vector<int> &A,vector<int> &B){
+        stack<int> s;
+        int j=0;
+        for(int i=0;i<N;i++)
+        {
+            s.push(A[i]);
+            //here b can have more element
+            while(s.size()>0 && s.top()==B[j])
+            {
+                s.pop();
+                j++;
+            }
+        }
+        //here a can have more element
+        if(j==N && s.size()==0)
+        return true;
+        else
+        return false;
+    }

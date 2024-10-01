@@ -1,0 +1,28 @@
+https://medium.com/codex/leetcode-106-construct-binary-tree-from-inorder-and-postorder-traversal-db51ff8be679
+
+class Solution {
+public:
+int index;
+unordered_map<int,int> m;
+    TreeNode* func(vector<int>& inorder, vector<int>& postorder, int start, int end){
+        if(start>end)return NULL;
+        TreeNode* res= new TreeNode(postorder[index--]);
+        if(start==end)return res;
+        int mid = m[res->val];
+        res->right = func(inorder,postorder, mid+1, end);
+        res->left = func(inorder,postorder, start, mid-1);
+        return res;
+    }
+    TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        int n = inorder.size();
+        index=n-1;
+        for(int i=0;i<n;i++){
+            m[inorder[i]]=i;
+        }
+        TreeNode* root = func(inorder,postorder,0,n-1);
+        return root;
+    }
+};
+
+time:O(n)
+space:O(h)

@@ -1,0 +1,50 @@
+vector<int> find(int arr[], int n , int x )
+{
+    int low=0,high=n-1,fir=-1,last=-1;
+    int mid;
+    while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(arr[mid]<x)
+        {
+            low=mid+1;
+        }
+        else if(arr[mid]>x)
+        {
+            high=mid-1;
+        }
+        else
+        {
+            fir=mid;
+            high=mid-1;
+        }
+        
+    }
+    
+    
+    low=0;
+    high=n-1;
+    
+     while(low<=high)
+    {
+        mid=(low+high)/2;
+        if(arr[mid]<x)
+        {
+            low=mid+1;
+        }
+        else if(arr[mid]>x)
+        {
+            high=mid-1;
+        }
+        else
+        {
+            last=mid;
+            low=mid+1;
+        }
+        
+    }
+    vector<int>mp;
+    mp.push_back(fir);
+    mp.push_back(last);
+    return mp;
+}

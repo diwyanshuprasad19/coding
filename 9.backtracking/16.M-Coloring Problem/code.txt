@@ -1,0 +1,33 @@
+    bool possible(int currcolor,bool graph[101][101],vector<int> &color,int m, int n,int currnode)
+    {
+        for(int k=0;k<n;k++)
+        {
+            if(k!=currnode && graph[k][currnode]==1 && color[k]==currcolor)
+            return false;
+        }
+    }
+    
+      bool solve(int currnode,bool graph[101][101],vector<int> &color,int m, int n)
+        {
+            if(currnode==n)
+            return true;
+            for(int i=1;i<=m;i++)
+            {
+                if(possible(i,graph,color,m,n,currnode))
+                {
+                    color[currnode]=i;
+                    if(solve(currnode+1,graph,color,m,n))return true;
+                    color[currnode]=0;
+                }
+            }
+            return false;
+        }
+    
+    
+    bool graphColoring(bool graph[101][101], int m, int n) {
+        //m=color 0 to m
+        //n=number of nodes.
+        vector<int> color(n,0);
+        if(solve(0,graph,color,m,n)) return true;
+        return false;
+    }

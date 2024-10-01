@@ -1,0 +1,68 @@
+class Solution{
+  public:
+    Node* MergeBoth(Node* first,Node* second)
+  {
+      Node* answer=NULL;
+      if(first==NULL)return second;
+      if(second==NULL)return first;    //first or second null
+      if(first->data<=second->data)
+      {
+          answer=first;
+          answer->next=MergeBoth(first->next,second);
+      }
+      else
+      {
+          answer=second;
+          answer->next=MergeBoth(first,second);
+      }
+      return answer;
+  }
+  
+    void FindMiddle(Node* curr,Node** first,Node** second)
+  {
+      Node* fast;
+      Node* slow;
+      slow=curr;
+      fast=curr->next; //if it was curr only it will return second middle not first
+      while(fast!=NULL)
+      {
+          fast=fast->next;
+          if(fast!=NULL)
+          {
+              slow=slow->next;
+              fast=fast->next;
+          }
+      }
+      /*
+      same as while(fast!=NULL && fast->next!=NULL)
+      {
+          slow=slow->next;
+          fast=fast->next->next;
+      }
+      
+      */
+      *first=curr;
+      *second=slow->next;
+      slow->next=NULL;
+  }
+  
+  void MergeSorting(Node** head)
+  {
+      Node* curr=*head;
+      Node* first;
+      Node* second;   //divide linked list in 2 parts
+      if(curr==NULL || curr->next==NULL) return;    //cuur and curr->next  equal to null  return;
+      FindMiddle(curr,&first,&second);
+      MergeSorting(&first);
+      MergeSorting(&second);
+      *head=MergeBoth(first,second);
+  }
+  
+  
+  
+    //Function to sort the given linked list using Merge Sort.
+    Node* mergeSort(Node* head) {
+        MergeSorting(&head);   //& as by using two pointer we can update the head
+        return head;
+    }
+};

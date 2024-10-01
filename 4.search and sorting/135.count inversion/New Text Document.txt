@@ -1,0 +1,2 @@
+we use mid-i as we know left part of array and right part both are sorted.
+hence if  j less than i all will be greter in left part than arr[j]

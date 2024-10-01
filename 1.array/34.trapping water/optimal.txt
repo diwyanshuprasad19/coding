@@ -1,0 +1,25 @@
+    long long trappingWater(int arr[], int n){
+        int l=0,r=n-1;
+        int left=0,right=0;
+        long long res=0;
+        while(l<r)
+        {
+            if(arr[l]<=arr[r])
+            {
+                if(left<=arr[l])
+                left=max(left,arr[l]);
+                else
+                res+=left-arr[l];
+                l++;
+            }
+            else
+            {
+                if(right<=arr[r])
+                right=max(right,arr[r]);
+                else
+                res+=right-arr[r];
+                r--;
+            }
+        }
+        return res;
+    }

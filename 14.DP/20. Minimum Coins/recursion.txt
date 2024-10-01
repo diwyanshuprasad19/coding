@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+int solve(int index,vector<int> &num, int x)
+{
+    if(index==0)
+    {
+        if(x%num[index]==0)return x/num[index];
+        else
+            return 1e9;
+    }
+    int nottake=0+solve(index-1,num,x);
+    int take=1e9;
+    if(num[index]<=x)
+        take=1+solve(index,num,x-num[index]);
+    return min(nottake,take);
+}
+int minimumElements(vector<int> &num, int x)
+{
+    int count=solve(num.size()-1,num,x);
+    if(count>=1e9)return -1;  //as there might be large value.
+    return count;
+}

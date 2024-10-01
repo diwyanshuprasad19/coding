@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+int solve(int index,int maxweight,vector<int> &profit, vector<int> &weight)
+{
+    if(index==0)
+    {
+            return (maxweight/weight[0])*profit[0];
+    }
+    int nottake=0+solve(index-1,maxweight,profit,weight);
+    int take=INT_MIN;
+    if(weight[index]<=maxweight)
+        take=profit[index]+solve(index,maxweight-weight[index],profit,weight);
+    return max(take,nottake);
+}
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    int count=solve(n-1,w,profit,weight);
+    return count;
+}

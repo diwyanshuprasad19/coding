@@ -1,0 +1,30 @@
+map<string,int> m;
+vector<Node*> v;
+string func(Node* root)
+{
+    if(root==NULL)
+    return "$";
+    string s="";
+    s+=to_string(root->data);
+    s+=func(root->left);
+    s+=func(root->right);
+    m[s]++;
+    if(m[s]==2)//already updates same string by ++
+    {
+        v.push_back(root);
+        //this will push like 2 4 here push only 2
+    }
+    return s;
+}
+vector<Node*> printAllDups(Node* root)
+{
+    //here 4 with null on both side is subtree hence same
+    //this is same as duplicate with 2 or more size
+    //here no concept of 2 or more needed
+    //vector will return 
+    m.clear();
+   v.clear();
+    func(root);
+    return v;
+    
+}

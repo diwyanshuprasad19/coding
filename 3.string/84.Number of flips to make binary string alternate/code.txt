@@ -1,0 +1,15 @@
+int minFlips (string S)
+{
+    
+    int c1=0,c2=0;
+    for(int i=0;i<S.size();i++)
+    {
+        // 0 at even and 1 at odd
+        if(i%2 ==0 && S[i]=='1')c1++;
+          if(i%2 ==1 && S[i]=='0')c1++;
+        //0 at odd and 1 at even
+         if(i%2 ==0 && S[i]=='0')c2++;
+          if(i%2 ==1 && S[i]=='1')c2++;
+    }
+    return min(c1,c2);
+}

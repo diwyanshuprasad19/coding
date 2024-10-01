@@ -1,0 +1,26 @@
+int count;
+     bool fetch(Node* root2,int d)
+     {
+         if(root2==NULL)return false;
+         if(root2->data==d)return true;
+         bool x=false,y=false;
+         if(d<root2->data)
+         x=fetch(root2->left,d);
+         else if(d>root2->data)
+         y=fetch(root2->right,d);
+         return x||y;
+     }
+    void solve(Node* root1, Node* root2, int x)
+    {
+        if(root1==NULL)return;
+        solve(root1->left,root2,x);
+        if(fetch(root2,x-root1->data))count++;
+        solve(root1->right,root2,x);
+    }
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+       count=0;
+       solve(root1,root2,x);
+       return count;
+    }
+};

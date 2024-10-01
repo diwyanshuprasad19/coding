@@ -1,0 +1,33 @@
+//O(nlog) , 0.04s
+
+bool isPresent(int arr[],int low,int high,int num){
+   
+   while(high>=low){
+       int mid=(low+high)/2;
+       
+       if(arr[mid]==num)
+           return true;
+       else if(arr[mid]>num)
+           high=mid-1;
+       else
+           low=mid+1;
+   }
+   return false;
+}
+
+
+bool findPair(int arr[], int size, int n){
+   
+   sort(arr,arr+size);
+   for(int i=0;i<size;i++){
+       
+       int d=arr[i]+n;
+       if(isPresent(arr,i+1,size-1,d))
+           return true;
+   }
+   
+   return false;
+}
+//this work to find pair with sum =0 and array 1 2 3 4 5
+also works for sum=8 and array like 4 12 3 5
+here 4 will come only 1 tiem

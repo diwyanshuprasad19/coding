@@ -1,0 +1,2 @@
+1u means 00000000001
+2u means 000000000010 like that

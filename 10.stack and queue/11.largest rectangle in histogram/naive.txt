@@ -1,0 +1,47 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+	vector<int> heights;
+	heights.push_back(2);
+	heights.push_back(1);
+	heights.push_back(5);
+	heights.push_back(6);
+	heights.push_back(2);
+	heights.push_back(3);
+	int siz=heights.size();
+        
+        
+        int ans=-100000;
+       int h,l;
+        for(int i=0;i<siz;i++)
+        {
+            int width=1;
+            int left=i-1;
+            int right =i+1;
+            //for left side
+             while(left>=0 && heights[i]<=heights[left])
+             {
+                 width++;
+                 left--;
+             }
+            //for right side
+            while(right<siz && heights[i]<=heights[right])
+             {
+                 width++;
+                 right++;;
+             }
+                int a=heights[i]*width;
+        if(a>ans)
+        {
+        	h=heights[i];
+        	l=width;
+        	ans=a;
+		}
+        }
+        cout<<h<<" "<<l<<" ";
+
+}
+
+//complexity would be O(n^2) and space-O(N)

@@ -1,0 +1,31 @@
+class Solution {
+public:
+    // This function returns the length of the longest palindrome centered at s[start:end]
+    int solve(string s, int start, int end) {
+        // Expand around the center
+        while (start >= 0 && end < s.length() && s[start] == s[end]) {
+            start--;
+            end++;
+        }
+        // Return the length of the palindrome
+        return end - start - 1; // Corrected length calculation
+    }
+
+    string longestPalindrome(string s) {
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = solve(s, i, i + 1); // Even length palindromes
+            int len2 = solve(s, i, i);     // Odd length palindromes
+            int len = max(len1, len2);
+            if (len > end - start) {
+                // Update start and end indices based on the new longest length found
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substr(start, end - start + 1); // Extract the longest palindrome substring
+    }
+};
+
+TC:O(n^2)
+SC:O(1)

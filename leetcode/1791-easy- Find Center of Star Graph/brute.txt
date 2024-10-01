@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findCenter(vector<vector<int>>& edges) {
+        int n = edges.size() + 1; // number of nodes in the graph
+
+        // Create a vector to count degrees of each node
+        vector<int> degree(n + 1, 0);
+
+        // Traverse through each edge and update degrees
+        for (int i = 0; i < edges.size(); ++i) {
+            int fir = edges[i][0];
+            int sec = edges[i][1];
+            degree[fir]++;
+            degree[sec]++;
+        }
+
+        // Find the node with degree n-1 (since it's a star graph, one node connects to all others)
+        for (int i = 1; i <= n; ++i) {
+            if (degree[i] == n - 1) {
+                return i;
+            }
+        }
+
+        return -1; // No center found
+    }
+};
+
+TC:O(n)
+SC:O(n)

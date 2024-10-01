@@ -1,0 +1,8 @@
+we took n-2*n-2+1/2
+ because 
+eg:1 2 3 4 5
+take 5 all ->1
+take 4 all->2
+take 3 all->3
+1+2+3
+which same as n*n+1/2

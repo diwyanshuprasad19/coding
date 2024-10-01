@@ -1,0 +1,31 @@
+
+///optimal inside the word file
+
+
+
+
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+       unordered_map<string,vector<string>> m;
+       for(int i=0;i<string_list.size();i++)
+       {
+           string s1=string_list[i];
+           string s=s1;
+           sort(s.begin(),s.end());
+           if(m.find(s)==m.end())
+           {
+               m[s].push_back(s1);
+           }
+           else
+           {
+               m[s].push_back(s1);
+           }
+       }
+       vector<vector<string>> ans;
+       for(auto x:m)
+       {
+           ans.push_back(x.second);
+       }
+       return ans;
+    }
+
+

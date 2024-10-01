@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+int unboundedKnapsack(int n, int w, vector<int> &profit, vector<int> &weight)
+{
+    vector<vector<int>> dp(n,vector<int>(w+1,-1));
+    for(int maxweight=0;maxweight<=w;maxweight++)
+    {
+        dp[0][maxweight]=(maxweight/weight[0])*profit[0];
+    }
+    for(int index=1;index<n;index++)
+    {
+        for(int maxweight=0;maxweight<=w;maxweight++)
+        {
+            int nottake=0+dp[index-1][maxweight];
+            int take=INT_MIN;
+            if(weight[index]<=maxweight)
+            {
+                take=profit[index]+dp[index][maxweight-weight[index]];
+            }
+            dp[index][maxweight]=max(take,nottake);
+        }
+    }
+    return dp[n-1][w];
+}

@@ -1,0 +1,39 @@
+vector<int> rightView(Node *root)
+{
+  if(root==NULL)
+   {
+       vector<int>v;
+       return v;
+   }
+   vector<int>v;
+   queue<Node *>q;
+   q.push(root);
+   vector<int>v1;
+   while(q.empty()==false)
+   {
+       int si=q.size();
+       while(si>0)
+       {
+
+           Node *curr=q.front();
+           v1.push_back(curr->data);
+           if(curr->left!=NULL)
+           {
+               q.push(curr->left);
+               
+           }
+           if(curr->right!=NULL)
+           {
+               q.push(curr->right);
+           }
+           si--;
+           q.pop();
+           
+       }
+       v.push_back(v1[v1.size()-1]);
+       v1.clear();
+       
+
+   }
+   return v;
+}

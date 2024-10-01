@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int low=0,high=nums.size()-1,mid;
+        while(low<=high)   /here if left half not sorted right will be if right not left will be
+        {
+            mid=(low+high)/2;
+            if(nums[mid]==target)
+                return mid;
+            else if(nums[low]<=nums[mid])   //equal to as single elemetn might be checked
+            {
+                if(target>=nums[low] &&nums[mid]>=target )
+                {
+                    high=mid-1;
+                }
+                else           //left half discarded
+                {
+                    low=mid+1;
+                }
+            }
+            else              //we cant use else if(arr[mid]<=arr[high]) as else condition should be there
+            {
+                if(target>=nums[mid]&&target<=nums[high])
+                {
+                    low=mid+1;
+                }
+                else  //right half discarded
+                {
+                    high=mid-1;
+                }
+            }
+        }
+        return -1;
+    }
+};

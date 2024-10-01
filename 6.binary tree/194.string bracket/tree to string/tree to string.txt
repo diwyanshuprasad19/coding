@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+#include <iostream>  
+#include<string>  
+using namespace std;
+
+struct Node{
+	int data;
+	 Node* left;
+	Node* right;
+Node(int val):data(val),left(NULL),right(NULL){}
+	~Node(){}
+};
+void func(Node* root,string &ans)
+{
+	if(root==NULL)return;
+	string s=to_string(root->data);
+	ans+=s;
+	/*
+	here leaf node does not add extra () by this condition here half 
+	left and right add () to ans.	so another condtion require 1 and 2
+	*/
+	if(root->left==NULL && root->right==NULL)return;  
+	if(root->left!=NULL)
+	{
+	ans+='(';                                      
+	func(root->left,ans);
+	ans+=')';
+	}
+	if(root->right!=NULL)  //condtion 2
+	{
+	ans+='(';
+	func(root->right,ans);
+	ans+=')';
+	}
+}
+
+int main()
+{
+	Node* n1=new Node(1);
+	Node* n2=new Node(2);
+	Node* n3=new Node(3);
+	Node* n4=new Node(4);
+    n1->right=n3;
+    n3->left=n4;
+    n3->right=n2;
+	string q="";
+	func(n1,q);
+	cout<<q;
+	
+	
+	return 0;
+}

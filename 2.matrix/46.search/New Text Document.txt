@@ -1,0 +1,53 @@
+leetcode and gfg are different 
+leetcode left to right sorted and first integer of row is greater than last integer of previous row
+
+gfg
+Given an n x n matrix and a number x, 
+find the position of x in the matrix if it is present in it. 
+Otherwise, print “Not Found”. In the given matrix, every row and column is sorted 
+in increasing order. 
+The designed algorithm should have linear time complexity. 
+
+
+ask interviewer will first integer of row is greater than last integer of previous row
+
+
+pass single row of 2d matrix
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <cstdlib>
+
+using namespace std;
+
+
+// ------ Prototypes ------------------------------------------------------
+double calcNums(double *a);
+
+// ****** MAIN ************************************************************
+int main()
+{
+    double nums[2][5] = {1,2,3,4,5,6,7,8,9,10};
+
+    cout << calcNums(nums[1]);
+  return 0;
+
+}
+
+double calcNums(double nums[5])
+{
+    double calc = 0;
+
+    calc = nums[1] +  nums[2] + nums[3] + nums[4]  + nums[5];
+
+
+    return calc;
+}
+
+2d array:
+int rows = sizeof array / sizeof array[0];
+ int cols = sizeof array[0] / sizeof array[0][0];
+
+2d vector:
+int r=matrix.size();
+        int c=matrix[0].size();

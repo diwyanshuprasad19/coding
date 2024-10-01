@@ -1,0 +1,33 @@
+int countRev (string s)
+{
+   int c=0,o=0;
+   if(s.size()%2!=0)return -1;
+   else
+   {
+   stack<char> st;
+   for(int i=0;i<s.size();i++)
+   {
+       if(s[i]=='{')
+       {
+           o++;
+           st.push(s[i]);
+       }
+       else if(s[i]=='}' && !s.empty() && st.top()=='{')
+       {
+           o--;
+           st.pop();
+       }
+       else
+       c++;
+   }
+   }
+   if(c%2==0)
+   c=c/2;
+   else
+   c=(c/2)+1;
+   if(o%2==0)
+   o=o/2;
+   else
+   o=(o/2)+1;
+   return c+o;
+}

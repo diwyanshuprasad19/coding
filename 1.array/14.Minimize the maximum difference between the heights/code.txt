@@ -1,0 +1,49 @@
+https://stackoverflow.com/questions/63000076/minimize-the-maximum-difference-between-the-heights
+This explanation provides a great understanding of the approach! Let's break it down further and clarify how to implement it in code.
+
+Sorting the Array:
+Sorting the array is crucial because it allows us to handle buildings sequentially in a systematic way. By sorting, we ensure that when we're processing the ith building, the buildings to its left are shorter or equal in height, and the buildings to its right are taller or equal in height.
+Iterating through Buildings:
+We iterate through each building from 0 to n-2 (inclusive). For each building Hi, we'll try to make it the highest by adding K to its height and adjusting the heights of adjacent buildings accordingly.
+Updating Heights:
+When we increase the height of a building, we also update the heights of buildings to its left by adding K and the heights of buildings to its right by subtracting K. Similarly, when we decrease the height of a building, we adjust the heights of neighboring buildings accordingly.
+Calculating Minimum and Maximum Heights:
+After updating the heights, we calculate the new minimum and maximum heights considering the adjustments made. The minimum height will be the minimum between the first building's height plus K and the next building's height minus K. Similarly, the maximum height will be the maximum between the current building's height plus K and the last building's height minus K.
+Calculating Range:
+For each building iteration, we calculate the range as the difference between the maximum and minimum heights obtained in step 4.
+Finding the Minimum Range:
+Finally, we find the minimum range among all buildings by iterating through them and keeping track of the minimum range encountered so far.
+To make this approach work, you would need to implement these steps in code. You can use arrays to store building heights and efficiently perform the required operations during each iteration. Sorting the array at the beginning ensures that you process the buildings in a manner that allows for optimal adjustments to their heights.
+
+Would you like to see a code implementation based on this explanation?
+
+
+// C++ Code for the Approach
+#include <bits/stdc++.h>
+using namespace std;
+
+int func(int *arr, int n, int k){
+    sort(arr, arr + n);
+    int ans = arr[n-1]-arr[0];
+    int tempmin = arr[0];
+    int tempmax = arr[n-1];
+    for(int i=0;i<n-1;i++){
+        if(arr[i]-k<0)
+        continue;
+        tempmin = min(arr[0]+k,arr[i+1]-k);
+        tempmax = max(arr[i]+k,arr[n-1]-k);
+        ans = min(ans,tempmax-tempmin);
+    }
+    return ans;
+}
+
+int main()
+{
+
+	int k = 6, n = 6;
+	int arr[n] = { 7, 4, 8, 8, 8, 9 };
+    
+	// Function Call
+	int ans = func(arr, n, k);
+	cout << ans;
+}

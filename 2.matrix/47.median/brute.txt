@@ -1,0 +1,4 @@
+store all element in m*n array
+use sorting and find n*m+1/2 index is median
+time complexity->n*mlog(n*m)
+space->n*m

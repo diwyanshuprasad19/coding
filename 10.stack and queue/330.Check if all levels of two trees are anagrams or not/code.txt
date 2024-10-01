@@ -1,0 +1,35 @@
+    bool areAnagrams(Node *root1, Node *root2)
+    {
+         if(root1==NULL && root2==NULL)return true;
+         if(root1==NULL || root2==NULL)return false;
+         queue<Node*> q1,q2;
+         q1.push(root1);
+         q2.push(root2);
+         while(q1.empty()==false )
+         {
+             int size1=q1.size();
+             int size2=q2.size();
+             if(size1!=size2)return false;
+             vector<int> v1,v2;
+             while(size1--)
+             {
+                 Node* node1=q1.front();
+                 q1.pop();
+                  Node* node2=q2.front();
+                 q2.pop();
+                 
+                 
+                 if(node1->left!=NULL)q1.push(node1->left);
+                 if(node1->right!=NULL)q1.push(node1->right);
+                 
+                 if(node2->left!=NULL)q2.push(node2->left);
+                 if(node2->right!=NULL)q2.push(node2->right);
+                 v1.push_back(node1->data);
+                 v2.push_back(node2->data);
+             }
+             sort(v1.begin(),v1.end());
+             sort(v2.begin(),v2.end());
+             if(v1 !=v2)return false;
+         }
+         return true;
+    }

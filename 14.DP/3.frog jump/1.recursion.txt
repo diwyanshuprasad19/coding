@@ -1,0 +1,27 @@
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+int frogJump(int n, vector<int> &heights)
+{
+    if(n==0)return 0;
+    int left=INT_MAX;
+    left=frogJump(n-1,heights)+abs(heights[n]-heights[n-1]);
+    int right=INT_MAX;
+    if(n>1)
+       right=frogJump(n-2,heights)+abs(heights[n]-heights[n-2]);
+    return min(left,right);
+}
+int main()
+{
+  vector<int> h;
+  h.push_back(10);
+  h.push_back(20);
+  h.push_back(30);
+  h.push_back(10);
+  int n=4;
+  int ans=frogJump(n-1,h);
+  cout<<ans;
+  return 0;
+}

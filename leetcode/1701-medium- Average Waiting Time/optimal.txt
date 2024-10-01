@@ -1,0 +1,16 @@
+class Solution {
+public:
+    double averageWaitingTime(vector<vector<int>>& customers) {
+        int start=customers[0][0];
+        int row=customers.size();
+        double ans=0;
+        for(int i=0;i<row;i++){
+            if(start<customers[i][0]){
+                start=customers[i][0];
+            }
+            start+=customers[i][1];
+            ans+=(start-customers[i][0]);
+        }
+        return ans/row;
+    }
+};

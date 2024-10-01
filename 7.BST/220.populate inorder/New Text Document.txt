@@ -1,0 +1,16 @@
+    void func(Node* root,Node* &prev)
+    {
+        if(root==NULL)return ;
+        func(root->left,prev);
+        if(prev!=NULL)
+        {
+            prev->next=root;
+        }
+        prev=root;
+        func(root->right,prev);
+    }
+    void populateNext(Node *root)
+    {
+        Node* prev=NULL;
+        func(root,prev);
+    }

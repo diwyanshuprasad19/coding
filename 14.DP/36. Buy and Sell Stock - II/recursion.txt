@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+long solve(int index,int buy,long *values,int n)
+{
+    if(index==n)
+        return 0;
+    int profit1,profit2;
+    if(buy==1)
+    {
+        profit1= -values[index]+solve(index+1,0,values,n);
+        profit2=0+solve(index+1,1,values,n);
+    }
+    else
+    {
+        profit1=values[index]+solve(index+1,1,values,n);
+        profit2=0+solve(index+1,0,values,n);
+    }
+    return max(profit1,profit2);
+}
+
+long getMaximumProfit(long *values, int n)
+{
+    long count=solve(0,1,values,n);
+    return count;
+}

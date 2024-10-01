@@ -1,0 +1,29 @@
+    bool solve(int src,vector<int> &vis,vector<int> &ord,vector<int> adj[])
+    {
+        vis[src]=1;
+        ord[src]=1;
+        for(auto x:adj[src])
+        {
+            if(vis[x]==0)
+            {
+            bool c=solve(x,vis,ord,adj);
+            if(c==true)return true;
+            }
+            else if(vis[x]==1)return true;
+        }
+        vis[src]=0;
+        return false;
+    }
+    bool isCyclic(int V, vector<int> adj[]) {
+        vector<int> vis(V,0);
+        vector<int> ord(V,0);
+        for(int i=0;i<V;i++)
+        {
+            if(vis[i]==0)
+            {
+                bool check=solve(i,vis,ord,adj);
+                if(check==true)return true;
+            }
+        }
+        return false;
+    }

@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxDistance(vector<int>& position, int m) {
+        int n= position.size();
+        if(n<m){
+            return -1;
+        }
+        sort(position.begin(),position.end());
+        int ma =position[n-1];
+        int ans=1;
+        for(int i=1;i<=ma;i++){
+            int count=1;
+            int last = position[0];
+            for(int j=0;j<n;j++){
+                if(position[j]-last>=i){
+                    last=position[j];
+                    count++;
+                }
+            }
+            if(count>=m){
+                ans=i;
+            }
+        }
+        return ans;
+    }
+};

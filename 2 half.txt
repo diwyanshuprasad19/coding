@@ -1,0 +1,20 @@
+1st half
+array
+matrix
+string
+search sorting
+linkedlist
+stack and queue
+bit manipulation
+
+
+
+
+2nf half
+binary tree
+binary search tree
+greedy method
+backtrcking
+dp
+trie
+heap

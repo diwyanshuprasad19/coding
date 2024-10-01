@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int solve(int index,vector<int> n)
+{
+    if(index==0)return n[index];
+    else if(index<0)return 0;
+    int pick=n[index]+solve(index-2,n);
+    int notpick=0+solve(index-1,n);
+    return max(pick,notpick);
+}
+
+int maximumNonAdjacentSum(vector<int> &nums){
+    int k=nums.size();
+    int m=solve(k-1,nums);
+    return m;
+}
+int main()
+{
+    vector<int> v{1,2,3,4};
+    int k=maximumNonAdjacentSum(v);
+    cout<<k;
+    return 0;
+}

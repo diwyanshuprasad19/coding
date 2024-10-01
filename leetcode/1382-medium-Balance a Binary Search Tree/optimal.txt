@@ -1,0 +1,38 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+vector<int> v;
+    TreeNode* func(int low, int high){
+        if(low>high) return NULL;
+        int mid = low+ (high-low)/2;
+        TreeNode* curr = new TreeNode(v[mid]);
+        curr->left = func(low,mid-1);
+        curr->right = func(mid+1,high);
+        return curr;
+
+    }
+    void transverse(TreeNode* root){
+            if(root==NULL)return;
+            transverse(root->left);
+            v.push_back(root->val);
+            transverse(root->right);
+    }   
+    TreeNode* balanceBST(TreeNode* root) {
+        transverse(root);
+        TreeNode* curr = func(0,v.size()-1);
+        return curr;
+    }
+};
+
+TC:O(N) as n for inorder and then for divide 
+SC:O(N) as for new tree created

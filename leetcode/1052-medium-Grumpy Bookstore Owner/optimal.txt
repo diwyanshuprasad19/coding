@@ -1,0 +1,30 @@
+https://leetcode.com/problems/grumpy-bookstore-owner/description/?envType=daily-question&envId=2024-06-21
+
+https://docs.google.com/document/d/1scuZnQCQHoIr37zEL_R2OQJaHoJWCHjIZ0UTU-vW0v0/edit
+theory:
+
+https://leetcode.com/problems/grumpy-bookstore-owner/solutions/5344877/beginner-friendly-sliding-window/
+leetcode explaination
+
+class Solution {
+public:
+    int maxSatisfied(vector<int>& cust, vector<int>& grumpy, int minutes) {
+        int res = 0, curr = 0;
+        for(int i = 0; i < cust.size(); ++i) {
+            if(grumpy[i] == 0) res += cust[i];
+        }
+        
+        for(int i = 0; i < minutes; ++i) {
+            if(grumpy[i]) curr += cust[i];
+        }
+
+        int addi = curr;
+        for(int i = minutes; i < cust.size(); ++i) {
+            if(grumpy[i - minutes]) curr -= cust[i - minutes];
+            if(grumpy[i]) curr += cust[i];
+            addi = max(addi, curr);
+        }
+
+        return res + addi;
+    }
+};

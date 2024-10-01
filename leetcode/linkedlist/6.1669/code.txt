@@ -1,0 +1,23 @@
+    ListNode* mergeInBetween(ListNode* list1, int a, int b, ListNode* list2) {
+        ListNode* upfirst=list1;
+        ListNode* uplast=list1;
+        ListNode* downlast=list2;
+        while(downlast->next!=NULL)
+        {
+            downlast=downlast->next;
+        }
+        while(a>1)
+        {
+            upfirst=upfirst->next;
+            a--;
+        }
+        while(b>=0)
+        {
+            uplast=uplast->next;
+            b--;
+        }
+        upfirst->next=list2;
+        downlast->next=uplast;
+        return list1;
+        
+    }
