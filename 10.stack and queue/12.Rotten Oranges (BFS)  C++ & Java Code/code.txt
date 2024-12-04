@@ -38,3 +38,5 @@
         }
         return tot==cnt?day:-1;
     }
+Time Complexity: O(n * m), where n is the number of rows and m is the number of columns in the grid.
+Space Complexity: O(n * m), primarily due to the space used by the queue for BFS.
