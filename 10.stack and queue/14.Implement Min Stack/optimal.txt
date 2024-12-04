@@ -4,7 +4,7 @@ class MinStack {
 public:
     MinStack() {
         while(s.empty()==false)s.pop();
-        mini=INT_MAX;
+        mini = LLONG_MAX;
     }
     
     void push(int val) {
@@ -18,7 +18,8 @@ public:
         {
             if(val1<mini)
             {
-                s.push(2*val1*1LL-mini);
+		//2LL*val1*1LL-mini : also this as 1LL converter 1 as long long type from int to long:Just 2 or 1 will create confusion as int type they are
+                s.push(2*val1*1LL-mini); //see here 2*val-mini = 2*mini-val hence both mini=val here this is intuition
                 mini=val1;
             }
             else
@@ -50,3 +51,6 @@ public:
     int getMin() {
         return mini;
     }
+
+Time Complexity: O(1) for all operations (push, pop, top, getMin).
+Space Complexity: O(n) where n is the number of elements in the stack (due to the storage of elements in the stack).
