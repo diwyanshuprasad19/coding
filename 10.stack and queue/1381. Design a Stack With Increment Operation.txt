@@ -1,0 +1,60 @@
+Ques:https://leetcode.com/problems/design-a-stack-with-increment-operation/description/
+
+class CustomStack {
+public:
+stack<int> s1,s2;
+int maxi=0;
+    CustomStack(int maxSize) {
+        maxi=maxSize;
+    }
+    
+    void push(int x) {
+        if(s1.size()<maxi)
+        s1.push(x);
+    }
+    
+    int pop() {
+        int x;
+        if(!s1.empty()){
+            x=s1.top();
+            s1.pop();
+            return x;
+
+        }
+        return -1;
+    }
+    
+    void increment(int k, int val) {
+        while(s1.size()>k){
+            s2.push(s1.top());
+            s1.pop();
+        }
+        while(!s1.empty()){
+            s2.push(s1.top()+val);
+            s1.pop();
+        }
+        while(!s2.empty()){
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+};
+
+/**
+ * Your CustomStack object will be instantiated and called as such:
+ * CustomStack* obj = new CustomStack(maxSize);
+ * obj->push(x);
+ * int param_2 = obj->pop();
+ * obj->increment(k,val);
+ */
+
+Time Complexity:
+	1	push(x):
+	◦	O(1): Simple push operation on a stack.
+	2	pop():
+	◦	O(1): Simple pop operation on a stack.
+	3	increment(k, val):
+	◦	O(n): At most, all elements in s1 are moved to s2 and back, where n is the size of the stack.
+
+Space Complexity:
+	•	O(n): Uses two stacks, s1 and s2, each of size up to n.
