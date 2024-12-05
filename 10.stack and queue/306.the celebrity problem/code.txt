@@ -1,4 +1,9 @@
 https://www.geeksforgeeks.org/the-celebrity-problem/
+Verify candidate (person 2):
+
+Knows no one: matrix[2][k] = 0 for all k.
+Is known by everyone: matrix[k][2] = 1 for all k (except matrix[2][2]).
+see in 2nd condition
 int celebrity(vector<vector<int> >& M, int n) 
     {
        int c=0;
