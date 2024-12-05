@@ -26,3 +26,5 @@ int twoStacks :: pop2()
   else
   return arr[top2++];
 }
+
+//See here we can also introduce a boundary where we need to check if top1 and top2 does not overlap
