@@ -1,21 +1,33 @@
-https://www.geeksforgeeks.org/the-celebrity-problem/
-Verify candidate (person 2):
+https://www.youtube.com/watch?v=cEadsbTeze4
 
-Knows no one: matrix[2][k] = 0 for all k.
-Is known by everyone: matrix[k][2] = 1 for all k (except matrix[2][2]).
-see in 2nd condition
-int celebrity(vector<vector<int> >& M, int n) 
-    {
-       int c=0;
-       for(int i=1;i<n;i++)
-       {
-           if(M[c][i]==1)
-           c=i;
-       }
-       for(int i=0;i<n;i++)
-       {
-           if(i!=c  && (M[c][i]==1 || M[i][c]==0))
-           return -1;
-       }
-       return c;
+class Solution {
+  public:
+    // Function to find if there is a celebrity in the party or not.
+    int celebrity(vector<vector<int>>& mat) {
+        int n = mat.size();
+        int i = 0, j = n - 1;
+
+        // Step 1: Narrow down to a candidate
+        while (i < j) {
+            if (mat[i][j] == 1) {
+                i++; // i cannot be the celebrity
+            } else {
+                j--; // j cannot be the celebrity
+            }
+        }
+
+        // Step 2: Verify the candidate
+        int candidate = i;
+        for (int k = 0; k < n; k++) {
+            if (k == candidate) continue;
+
+            // If candidate knows someone or someone doesn't know the candidate
+            if (mat[candidate][k] == 1 || mat[k][candidate] == 0) {
+                return -1;
+            }
+        }
+
+        return candidate; // Return the celebrity index
     }
+//tc:O(n) and Sc:O(1)
+};
