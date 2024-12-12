@@ -1,30 +1,118 @@
-{
-    if(s.size()==0 || s.top()<x)
-    {
-        s.push(x);
-    }
-    else
-    {
-        int a=s.top();
+#include <iostream>
+#include <stack>
+using namespace std;
+
+// Function to insert an element into a sorted stack
+void insert(stack<int>& s, int val) {
+    if (s.empty() || s.top() < val) {
+        s.push(val);
+    } else {
+        int temp = s.top();
         s.pop();
-        correct(s,x);
-        s.push(a);
+        insert(s, val);
+        s.push(temp);
     }
 }
 
+// Function to reverse a stack using recursion
+void reverse(stack<int>& s) {
+    if (s.empty()) {
+        return;
+    }
+    int val = s.top();
+    s.pop();
+    reverse(s);
+    insert(s, val);
+}
 
-void reverse(stack<int> &s)
-{
-    if(s.size()>0)
-    {
-        int x=s.top();
+// Utility function to print a stack
+void printStack(stack<int> s) {
+    while (!s.empty()) {
+        cout << s.top() << " ";
         s.pop();
-        reverse(s);
-        correct(s,x);
     }
+    cout << endl;
 }
 
-void SortedStack :: sort()
-{
-  reverse(s);
+int main() {
+    stack<int> s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(5);
+    s.push(3);
+
+    cout << "Original stack: ";
+    printStack(s);
+
+    // Repopulate stack as printStack modifies the stack
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(5);
+    s.push(3);
+
+    reverse(s);
+
+    cout << "Reversed stack: ";
+    printStack(s);
+
+    return 0;
 }
+Time Complexity (TC)
+Insert Function:
+
+In the worst case, it goes through all n elements of the stack to find the correct position for insertion.
+Time complexity: 
+𝑂
+(
+𝑛
+)
+O(n).
+Reverse Function:
+
+The reverse function recursively processes all n elements of the stack.
+For each of these n elements, the insert function is called, which itself has a complexity of 
+𝑂
+(
+𝑛
+)
+O(n).
+Time complexity: 
+𝑂
+(
+𝑛
+2
+)
+O(n 
+2
+ ).
+Space Complexity (SC)
+Insert Function:
+
+The function uses recursion. The maximum depth of the recursion stack is 
+𝑂
+(
+𝑛
+)
+O(n), as it may need to process all elements of the stack.
+Reverse Function:
+
+The function uses recursion, with a maximum depth of 
+𝑂
+(
+𝑛
+)
+O(n) for the reverse process.
+Each call to insert adds an additional depth of 
+𝑂
+(
+𝑛
+)
+O(n).
+Space complexity: 
+𝑂
+(
+𝑛
+)
+O(n) for the recursion stack.
