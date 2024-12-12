@@ -1,4 +1,7 @@
-    int findMaxLen(string s) 
+ 
+Questions:https://leetcode.com/problems/longest-valid-parentheses/
+
+   int findMaxLen(string s) 
     {
     int left =0,right=0,ans=0,n=s.size();
     for(int i=0;i<n;i++)
@@ -33,3 +36,47 @@
     }
     return ans;
     }
+
+
+Time Complexity
+Left-to-Right Pass:
+The algorithm iterates over the entire string once.
+Time complexity = 
+𝑂
+(
+𝑛
+)
+O(n).
+Right-to-Left Pass:
+Again, the algorithm iterates over the entire string once.
+Time complexity = 
+𝑂
+(
+𝑛
+)
+O(n).
+Total Time Complexity:
+The total time complexity is 
+𝑂
+(
+𝑛
+)
++
+𝑂
+(
+𝑛
+)
+=
+𝑂
+(
+𝑛
+)
+O(n)+O(n)=O(n).
+Space Complexity
+The algorithm only uses a constant amount of extra space (left, right, ans).
+Space complexity = 
+𝑂
+(
+1
+)
+O(1).
